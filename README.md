@@ -6,6 +6,9 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
+Psaverse will facilitate archiving and sharing all of the data and
+materials for PSA projects in a standardized, transparent way.
+
 ## Installation
 
 You can install the development version of psaverse from
