@@ -28,9 +28,8 @@ test_that("defaults", {
 
   # check file customisations
   desc <- readLines(file.path(default_dir, "DESCRIPTION"))
-  # expect_equal(desc[[1]], "Package: PSA000")
-  # expect_equal(desc[[2]], "Title: Data Archive for PSA000")
-  # expect_equal(desc[[8]], "License: CC BY 4.0")
+  expect_equal(desc[[1]], "Package: PSA000")
+  expect_equal(desc[[2]], "Title: Data Archive for PSA000-demo")
 
   # clean up
   unlink(default_dir, recursive = TRUE)

@@ -27,8 +27,15 @@ psa_create_project <- function(path = "./",
               file.path(path, psa_name))
 
   # update with current project info ----
+  usethis::ui_todo("Customising files...")
 
   ## DESCRIPTION ----
+  desc_file <- file.path(path, psa_name, "DESCRIPTION")
+  desc <- readLines(desc_file)
+  gitname <- gsub("-[a-z0-9]*$", "", psa_name)
+  desc[[1]] <- paste("Package:", gitname)
+  desc[[2]] <- paste("Title: Data Archive for", psa_name)
+  write(desc, desc_file)
 
   # check github access ----
 
