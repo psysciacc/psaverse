@@ -1,0 +1,21 @@
+---
+title: "psaverse"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{psaverse}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(psaverse)
+```
+
+## Setting up a PSA Project Package
