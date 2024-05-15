@@ -36,8 +36,9 @@ psa_create_project <- function(path = "./",
 
   # create the project
   ui_todo("Setting up project...")
-  create_project(
-    path = paste0(path, "/", psa_name)
+  create_package(
+    path = paste0(path, "/", psa_name),
+    check_name = FALSE
   )
 
   ui_done("Done!")
