@@ -1,4 +1,4 @@
-#' Create PSA Project
+#' PSA Project
 #'
 #' DESCRIPTION
 #' ADD INFORMATION ABOUT \\ OR / FOR WINDOWS
