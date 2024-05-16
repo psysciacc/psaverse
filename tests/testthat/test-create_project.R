@@ -22,13 +22,13 @@ test_that("defaults", {
   expect_true(dir.exists(default_dir))
 
   # check expected directory structure
-  expected_subfiles <- c("DESCRIPTION")
+  expected_subfiles <- c("DESCRIPTION", "NAMESPACE")
   subfiles <- list.files(default_dir, recursive = TRUE)
   expect_equal(subfiles, expected_subfiles)
 
   # check file customisations
   desc <- readLines(file.path(default_dir, "DESCRIPTION"))
-  expect_equal(desc[[1]], "Package: PSA000")
+  expect_equal(desc[[1]], "Package: PSA000-demo")
   expect_equal(desc[[2]], "Title: Data Archive for PSA000-demo")
 
   # clean up

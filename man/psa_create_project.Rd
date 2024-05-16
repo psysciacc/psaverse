@@ -4,19 +4,20 @@
 \alias{psa_create_project}
 \title{Create PSA Project}
 \usage{
-psa_create_project(
-  path = "./",
-  psa_name = "PSA000-demo",
-  organisation = "psysciacc"
-)
+psa_create_project(path = "./", psa_name = "PSA000-demo")
 }
 \arguments{
 \item{path}{path to directory where the local project will be}
 
 \item{psa_name}{name of the repo (e.g., PSA000-demo)}
-
-\item{organisation}{github org to create the repo}
 }
 \description{
-Create PSA Project
+DESCRIPTION
+ADD INFORMATION ABOUT \\ OR / FOR WINDOWS
 }
+\examples{
+# psa_create_project(path = "~/Downloads", psa_name = "PSA001-Faces")
+# psa_create_project(path = "C:\\Downloads", psa_name = "PSA001-Faces")
+}
+\keyword{create}
+\keyword{project}
