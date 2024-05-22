@@ -6,6 +6,8 @@
 #' @param path path to directory where the local project will be
 #' @param psa_name name of the repo (e.g., PSA000-demo)
 #'
+#' @import usethis
+#'
 #' @keywords create project
 #'
 #' @return NULL
