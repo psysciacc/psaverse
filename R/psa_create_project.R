@@ -34,7 +34,7 @@ psa_create_project <- function(path = "./",
                                comment = NULL) {
 
   # check the name of the project
-  ui_todo("Checking...")
+  usethis::ui_todo("Checking...")
   # check name formatting ----
   name_ok <- grepl("^[A-Z]{3,6}[0-9]{3}-[a-z0-9]{1,15}$", psa_name)
   if (!name_ok) {
@@ -50,8 +50,8 @@ psa_create_project <- function(path = "./",
   }
 
   # create the project
-  ui_todo("Setting up project...")
-  create_package(
+  usethis::ui_todo("Setting up project...")
+  usethis::create_package(
     path = paste0(path, "/", psa_name),
     fields = list(Title = paste0("Data Archive for", " ", psa_name),
                   "Authors@R" = person(given = given,
@@ -78,4 +78,5 @@ psa_create_project <- function(path = "./",
   ui_todo("Refer to the function psa_create_description to add more information to the DESCRIPTION file, or manually edit it.")
 
   ui_done("Done!")
+
 }
