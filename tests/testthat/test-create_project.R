@@ -17,19 +17,45 @@ test_that("defaults", {
   # make default project
   psa_create_project(tdir)
 
+  proj_activate(default_dir)
+
   # check if default directory exists
   existing_files <- list.files(tdir)
   expect_true(dir.exists(default_dir))
 
   # check expected directory structure
-  expected_subfiles <- c("DESCRIPTION", "NAMESPACE")
+  expected_subfiles <- c("DESCRIPTION", "LICENSE.md", "NAMESPACE")
   subfiles <- list.files(default_dir, recursive = TRUE)
   expect_equal(subfiles, expected_subfiles)
 
   # check file customisations
-  desc <- readLines(file.path(default_dir, "DESCRIPTION"))
-  expect_equal(desc[[1]], "Package: PSA000-demo")
-  expect_equal(desc[[2]], "Title: Data Archive for PSA000-demo")
+  desc <- usethis:::proj_desc()
+  expect_equal(desc$get("Package")[[1]], "PSA000-demo")
+  expect_equal(desc$get("Title")[[1]], "Data Archive for PSA000-demo")
+
+  # clean up
+  unlink(default_dir, recursive = TRUE)
+})
+
+test_that("with author info", {
+  # make default project
+  psa_create_project(tdir, given = "Ada", family = "Lovelace",
+                     email = "lovelace@example.com",
+                     role = c("aut", "cre"),
+                     comment = c(ORCID = "ADA-ORCID-ID"))
+
+  proj_activate(default_dir)
+
+  # check if default directory exists
+  existing_files <- list.files(tdir)
+  expect_true(dir.exists(default_dir))
+
+  # check file customisations
+  desc <- usethis:::proj_desc()
+  expect_equal(desc$get_authors(), person(given = "Ada", family = "Lovelace",
+                                          email = "lovelace@example.com",
+                                          role = c("aut", "cre"),
+                                          comment = c(ORCID = "ADA-ORCID-ID")))
 
   # clean up
   unlink(default_dir, recursive = TRUE)

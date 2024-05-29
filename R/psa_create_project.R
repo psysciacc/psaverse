@@ -5,6 +5,7 @@
 #'
 #' @param path path to directory where the local project will be
 #' @param psa_name name of the repo (e.g., PSA000-demo)
+#' @param given
 #'
 #' @import usethis
 #'
@@ -13,11 +14,19 @@
 #' @return NULL
 #' @export
 #' @examples
-#' # psa_create_project(path = "~/Downloads", psa_name = "PSA001-Faces")
-#' # psa_create_project(path = "C:\\Downloads", psa_name = "PSA001-Faces")
+#' \dontrun{
+#' psa_create_project(path = "~/Downloads", psa_name = "PSA001-Faces")
+#' psa_create_project(path = "C:\\Downloads", psa_name = "PSA001-Faces")
+#' }
 
 psa_create_project <- function(path = "./",
-                               psa_name = "PSA000-demo") {
+                               psa_name = "PSA000-demo",
+                               given = NULL,
+                               family = NULL,
+                               middle = NULL,
+                               email = NULL,
+                               role = NULL,
+                               comment = NULL) {
 
   # check the name of the project
   ui_todo("Checking...")
@@ -39,9 +48,29 @@ psa_create_project <- function(path = "./",
   ui_todo("Setting up project...")
   create_package(
     path = paste0(path, "/", psa_name),
-    fields = list(Title = paste0("Data Archive for", " ", psa_name)),
+    fields = list(Title = paste0("Data Archive for", " ", psa_name),
+                  "Authors@R" = person(given = given,
+                                        family = family,
+                                        middle = middle,
+                                        email = email,
+                                        role = role,
+                                        comment = comment),
+                  License = use_ccby_license()),
     check_name = FALSE
   )
+
+  ui_info("This package makes use of the CC BY 4.0 license.")
+
+  if (is.null(given) && is.null(family) && is.null(middle)
+      && is.null(email) && is.null(role) && is.null(comment)) {
+
+    # Add default author with psa_add_author: for now the Authors field is NULL
+
+
+    ui_todo("No author information supplied: placeholder author introduced in DESCRIPTION file. Please edit the DESCRIPTION file to remove it.")
+  }
+
+  ui_todo("Refer to the function psa_create_description to add more information to the DESCRIPTION file, or manually edit it.")
 
   ui_done("Done!")
 }
