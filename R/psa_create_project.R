@@ -5,7 +5,12 @@
 #'
 #' @param path path to directory where the local project will be
 #' @param psa_name name of the repo (e.g., PSA000-demo)
-#' @param given
+#' @param given given name of first author
+#' @param family family name of first author
+#' @param middle middle name of first author
+#' @param email email address of first author
+#' @param role role of first author, usually "aut" and "cre"; refer to the documentation for utils::person() for more details.
+#' @param comment additional information, e.g. ORCID number
 #'
 #' @import usethis
 #'

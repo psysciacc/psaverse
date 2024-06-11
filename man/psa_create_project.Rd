@@ -4,20 +4,43 @@
 \alias{psa_create_project}
 \title{Create PSA Project}
 \usage{
-psa_create_project(path = "./", psa_name = "PSA000-demo")
+psa_create_project(
+  path = "./",
+  psa_name = "PSA000-demo",
+  given = NULL,
+  family = NULL,
+  middle = NULL,
+  email = NULL,
+  role = NULL,
+  comment = NULL
+)
 }
 \arguments{
 \item{path}{path to directory where the local project will be}
 
 \item{psa_name}{name of the repo (e.g., PSA000-demo)}
+
+\item{given}{given name of first author}
+
+\item{family}{family name of first author}
+
+\item{middle}{middle name of first author}
+
+\item{email}{email address of first author}
+
+\item{role}{role of first author, usually "aut" and "cre"; refer to the documentation for utils::person() for more details.}
+
+\item{comment}{additional information, e.g. ORCID number}
 }
 \description{
 DESCRIPTION
 ADD INFORMATION ABOUT \\ OR / FOR WINDOWS
 }
 \examples{
-# psa_create_project(path = "~/Downloads", psa_name = "PSA001-Faces")
-# psa_create_project(path = "C:\\Downloads", psa_name = "PSA001-Faces")
+\dontrun{
+psa_create_project(path = "~/Downloads", psa_name = "PSA001-Faces")
+psa_create_project(path = "C:\\\\Downloads", psa_name = "PSA001-Faces")
+}
 }
 \keyword{create}
 \keyword{project}
