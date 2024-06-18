@@ -34,7 +34,7 @@ psa_create_project <- function(path = "./",
                                comment = NULL) {
 
   # check the name of the project
-  usethis::ui_todo("Checking...")
+  ui_todo("Checking...")
   # check name formatting ----
   name_ok <- grepl("^[A-Z]{3,6}[0-9]{3}-[a-z0-9]{1,15}$", psa_name)
   if (!name_ok) {
@@ -50,8 +50,8 @@ psa_create_project <- function(path = "./",
   }
 
   # create the project
-  usethis::ui_todo("Setting up project...")
-  usethis::create_package(
+  ui_todo("Setting up project...")
+  create_package(
     path = paste0(path, "/", psa_name),
     fields = list(Title = paste0("Data Archive for", " ", psa_name),
                   "Authors@R" = person(given = given,
@@ -69,10 +69,7 @@ psa_create_project <- function(path = "./",
   if (is.null(given) && is.null(family) && is.null(middle)
       && is.null(email) && is.null(role) && is.null(comment)) {
 
-    # Add default author with psa_add_author: for now the Authors field is NULL
-
-
-    ui_todo("No author information supplied: placeholder author introduced in DESCRIPTION file. Please edit the DESCRIPTION file to remove it.")
+    ui_todo("No author information supplied. Please execute the psa_add_author function to add more authors.")
   }
 
   ui_todo("Refer to the function psa_create_description to add more information to the DESCRIPTION file, or manually edit it.")

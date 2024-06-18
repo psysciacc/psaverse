@@ -32,6 +32,7 @@ test_that("defaults", {
   desc <- usethis:::proj_desc()
   expect_equal(desc$get("Package")[[1]], "PSA000-demo")
   expect_equal(desc$get("Title")[[1]], "Data Archive for PSA000-demo")
+  expect_equal(is.null(desc$get_authors()[[1]]), TRUE)
 
   # clean up
   unlink(default_dir, recursive = TRUE)
@@ -52,10 +53,7 @@ test_that("with author info", {
 
   # check file customisations
   desc <- usethis:::proj_desc()
-  expect_equal(desc$get_authors(), person(given = "Ada", family = "Lovelace",
-                                          email = "lovelace@example.com",
-                                          role = c("aut", "cre"),
-                                          comment = c(ORCID = "ADA-ORCID-ID")))
+  expect_equal(as.character(desc$get_authors()[[1]]), "Ada Lovelace <lovelace@example.com> [aut, cre] (ADA-ORCID-ID)")
 
   # clean up
   unlink(default_dir, recursive = TRUE)

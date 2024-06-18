@@ -29,7 +29,7 @@ psa_create_description <- function(
     license = NULL
     ) {
 
-  usethis::proj_activate(usethis:::proj_path())
+  proj_activate(proj_path())
   desc <- usethis:::proj_desc()
 
   fields_update <- list()
@@ -51,15 +51,15 @@ psa_create_description <- function(
   # Set up requested license
   if (!is.null(license)) {
     select_license <- switch(license,
-                             "MIT" = quote(usethis::use_mit_license()),
-                             "Apache" = quote(usethis::use_apache_license()),
-                             "GPLv2" = quote(usethis::use_gpl_license(2)),
-                             "GPLv3" = quote(usethis::use_gpl3_license()),
-                             "AGPLv3" = quote(usethis::use_agpl3_license()),
-                             "LGPLv2.1" = quote(usethis::use_lgpl_license(2.1)),
-                             "LGPLv3" = quote(usethis::use_lgpl_license(3)),
-                             "CC0" = quote(usethis::use_cc0_license()),
-                             "CC-BY" = quote(usethis::use_ccby_license()))
+                             "MIT" = quote(use_mit_license()),
+                             "Apache" = quote(use_apache_license()),
+                             "GPLv2" = quote(use_gpl_license(2)),
+                             "GPLv3" = quote(use_gpl3_license()),
+                             "AGPLv3" = quote(use_agpl3_license()),
+                             "LGPLv2.1" = quote(use_lgpl_license(2.1)),
+                             "LGPLv3" = quote(use_lgpl_license(3)),
+                             "CC0" = quote(use_cc0_license()),
+                             "CC-BY" = quote(use_ccby_license()))
     if (!is.null(select_license)) {
       eval(select_license)
     }
