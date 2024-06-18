@@ -1,7 +1,19 @@
-#' Create PSA Project Description
+#' Create/Update PSA Project Description
 #'
-#' @param path path to directory where the local project will be
-#' @param psa_name name of the repo (e.g., PSA000-demo)
+#' @param package_title new title for the package
+#' @param description short description of package functionality
+#' @param version version number of package (by default 0.0.0.9000)
+#' @param license license type of package. Directly available options:
+#' - MIT License: "MIT"
+#' - Apache License 2.0: "Apache"
+#' - GNU General Public License: "GPLv2" or "GPLv3"
+#' - GNU Affero General Public License, version 3: "AGPLv3"
+#' - GNU Lesser General Public License: "LGPLv2.1" or "LGPLv3"
+#' - Creative Commons CC0 Public Domain Dedication: "CC0"
+#' - Creative Commons Attribution 4.0 International: "CC-BY"
+#' - Proprietary license: "Proprietary"
+#'
+#' Refer to the documentation on package licenses in the usethis package website for available licenses.
 #'
 #' @import usethis
 #' @keywords create description
@@ -17,18 +29,42 @@ psa_create_description <- function(
     license = NULL
     ) {
 
-  # figure out which ones they want and add them to a list
+  usethis::proj_activate(usethis:::proj_path())
+  desc <- usethis:::proj_desc()
+
   fields_update <- list()
   if (!is.null(package_title)) {
-    fields_update$Title <- package_title
+    desc$set("Title", package_title)
   }
 
-  #
+  if (!is.null(description)) {
+    desc$set("Description", description)
+  }
 
-  use_description(
-    fields = fields_update,
-    check_name = FALSE
-  )
+  if (!is.null(version)) {
+    desc$set("Version", version)
+  }
+
+  # Update description file
+  desc$write(file = "DESCRIPTION")
+
+  # Set up requested license
+  if (!is.null(license)) {
+    select_license <- switch(license,
+                             "MIT" = quote(usethis::use_mit_license()),
+                             "Apache" = quote(usethis::use_apache_license()),
+                             "GPLv2" = quote(usethis::use_gpl_license(2)),
+                             "GPLv3" = quote(usethis::use_gpl3_license()),
+                             "AGPLv3" = quote(usethis::use_agpl3_license()),
+                             "LGPLv2.1" = quote(usethis::use_lgpl_license(2.1)),
+                             "LGPLv3" = quote(usethis::use_lgpl_license(3)),
+                             "CC0" = quote(usethis::use_cc0_license()),
+                             "CC-BY" = quote(usethis::use_ccby_license()))
+    if (!is.null(select_license)) {
+      eval(select_license)
+    }
+  }
+
 
 }
 

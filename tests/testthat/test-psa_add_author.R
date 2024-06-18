@@ -10,19 +10,26 @@ usethis::proj_activate(default_dir)
 
 test_that("example", {
 
-  # Empty test, examining function behavior
   psa_add_author(
     given = "Ada",
     family = "Lovelace",
+    ORCID_number = "ADA-ORCID-ID",
     role = c("aut", "cre"),
-    email = "lovelace@example.com",
-    comment = c(ORCID = "ADA-ORCID-ID")
+    email = "lovelace@example.com"
   )
 
-  desc <- readLines(file.path(default_dir, "DESCRIPTION"))
-  for (item in 1:length(desc)) {
-    print(desc[[item]])
-  }
+  psa_add_author(
+    given = "Charles",
+    family = "Babbage",
+    ORCID_number = "CHARLES-ORCID-ID",
+    role = c("aut", "cre"),
+    email = "babbage@example.com"
+  )
+
+  desc <- usethis:::proj_desc()
+  expect_equal(as.character(desc$get_authors()[[2]]), "Ada Lovelace <lovelace@example.com> [aut, cre] (ADA-ORCID-ID)")
+  expect_equal(as.character(desc$get_authors()[[3]]), "Charles Babbage <babbage@example.com> [aut, cre] (CHARLES-ORCID-ID)")
+  # Still includes placeholder author
 
   # clean up
   unlink(default_dir, recursive = TRUE)
