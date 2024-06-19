@@ -23,12 +23,12 @@
 #' # psa_git()
 psa_git <- function(
     organisation = "psysciacc",
-    private = TRUE,
+    private = TRUE
     ) {
 
   use_github(
     organisation = organisation,
-    private = private,
+    private = private
   )
 
 }
