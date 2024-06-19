@@ -39,6 +39,8 @@ psa_dependencies <- function(
 
     for (i in 1:length(all.files)){
       temp <- readLines(all.files[i])
+      temp <- strsplit(temp, split = ";")
+      temp <- unlist(temp)
       temp <- temp[grepl("library\\(.*\\)", temp)]
       temp <- gsub("library\\(|\\)", "", temp)
       temp <- trimws(temp)
