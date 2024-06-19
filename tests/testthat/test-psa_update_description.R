@@ -10,7 +10,7 @@ usethis::proj_activate(default_dir)
 
 test_that("example with license", {
 
-  psa_create_description(
+  psa_update_description(
     package_title = "New Title",
     description = "Short description",
     version = "0.0.1.0000",
@@ -28,7 +28,7 @@ test_that("example with license", {
 
 test_that("example without license", {
 
-  psa_create_description(
+  psa_update_description(
     package_title = "New Title 2",
     description = "Short description 2"
   )

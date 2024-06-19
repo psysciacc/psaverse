@@ -16,13 +16,21 @@
 #' Refer to the documentation on package licenses in the usethis package website for available licenses.
 #'
 #' @import usethis
-#' @keywords create description
+#' @keywords create update description
 #'
 #' @return NULL
 #' @export
-#' @example
+#' @examples
+#' \dontrun{
+#' psa_update_description(
+#'  package_title = "New Title",
+#'  description = "Short description",
+#'  version = "0.0.1.0000",
+#'  license = "MIT"
+#' )
+#' }
 #' #
-psa_create_description <- function(
+psa_update_description <- function(
     package_title = NULL,
     description = NULL,
     version = NULL,
