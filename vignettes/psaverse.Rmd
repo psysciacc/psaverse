@@ -20,3 +20,44 @@ library(psaverse)
 
 ## Setting up a PSA Project Package
 
+First, you would need to run the `psa_create_project()` function including the path you want to start the folder on your computer and the name of the project. After you run this function, the new package R project will open automatically for you.  
+
+```{r eval = F}
+psa_create_project(
+  path = "~/Github", # path you want this on your computer
+  psa_name = "PSA007-SPAML" # name of the project 
+)
+```
+
+## Create/Update Descriptions
+
+You can update the description of the package using the `psa_update_description()` function. 
+
+```{r eval = F}
+psa_update_description(
+    package_title = NULL,
+    description = NULL,
+    version = NULL,
+    license = NULL
+)
+```
+
+## Add Dataset
+
+```{r eval = F}
+psa_data(
+)
+```
+
+## Add R Package Dependencies
+
+After you add your R scripts in `.R` or `.Rmd` format, you can use a convenience function to add all libraries that can be found in those scripts. The default is to examine all files in the `inst` folder and add those packages.  
+
+```{r eval = F}
+psa_dependencies(
+    scan_folder = "inst",
+    add_package = NULL # has to be one at a time
+    )
+```
+
+

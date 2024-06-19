@@ -42,6 +42,7 @@ psa_dependencies <- function(
       temp <- temp[grepl("library\\(.*\\)", temp)]
       temp <- gsub("library\\(|\\)", "", temp)
       temp <- trimws(temp)
+      temp <- unique(temp)
 
       sapply(temp, use_package)
     }
