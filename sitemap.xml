@@ -22,9 +22,18 @@
     <loc>http://psysciacc.org/psaverse/reference/index.html</loc>
   </url>
   <url>
+    <loc>http://psysciacc.org/psaverse/reference/psa_add_author.html</loc>
+  </url>
+  <url>
+    <loc>http://psysciacc.org/psaverse/reference/psa_create_description.html</loc>
+  </url>
+  <url>
     <loc>http://psysciacc.org/psaverse/reference/psa_create_project.html</loc>
   </url>
   <url>
     <loc>http://psysciacc.org/psaverse/reference/psa_data.html</loc>
+  </url>
+  <url>
+    <loc>http://psysciacc.org/psaverse/reference/psaverse-package.html</loc>
   </url>
 </urlset>
