@@ -7,11 +7,12 @@
 #' @param psa_name name of the repo (e.g., PSA000-demo)
 #'
 #' @import usethis
+#'
 #' @keywords create project
 #'
 #' @return NULL
 #' @export
-#' @example
+#' @examples
 #' # psa_create_project(path = "~/Downloads", psa_name = "PSA001-Faces")
 #' # psa_create_project(path = "C:\\Downloads", psa_name = "PSA001-Faces")
 
@@ -38,6 +39,7 @@ psa_create_project <- function(path = "./",
   ui_todo("Setting up project...")
   create_package(
     path = paste0(path, "/", psa_name),
+    fields = list(Title = paste0("Data Archive for", " ", psa_name)),
     check_name = FALSE
   )
 
