@@ -60,4 +60,12 @@ psa_dependencies(
     )
 ```
 
+## Add R Package to PSA GitHub
 
+First, you should confirm you have the ability to push to the PsySciAcc github organization at https://github.com/psysciacc. Please ask to be added to the team. 
+
+Second, you can use the `psa_git()` function to initialize your new project as a github repository associated with the PsySciAcc organization. You can then use your favorite way to github to push and pull to update the package. The default is to create a private repository until you are ready to release the project. 
+
+```{r eval = F}
+psa_git()
+```
