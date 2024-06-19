@@ -8,8 +8,10 @@
 #'
 #' @return NULL
 #' @export
-#' @example
-#' #
+#' @examples
+#' # psa_create_description(package_title = "PSA000-demo",
+#' #   description = "Here's our description",
+#' #   version = "0.0.1")
 psa_create_description <- function(
     package_title = NULL,
     description = NULL,

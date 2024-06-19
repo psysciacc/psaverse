@@ -19,5 +19,10 @@ psa_create_description(
 \description{
 Create PSA Project Description
 }
+\examples{
+# psa_create_description(package_title = "PSA000-demo",
+#   description = "Here's our description",
+#   version = "0.0.1")
+}
 \keyword{create}
 \keyword{description}

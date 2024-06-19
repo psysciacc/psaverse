@@ -16,7 +16,7 @@
 #'
 #' @return NULL
 #' @export
-#' @example
+#' @examples
 #' # psa_dependencies(scan_folder = "inst")
 psa_dependencies <- function(
     scan_folder = "inst",
