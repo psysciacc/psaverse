@@ -122,6 +122,20 @@ be found in those scripts. The default is to examine all files in the
 <span>    add_package <span class="op">=</span> <span class="cn">NULL</span> <span class="co"># has to be one at a time</span></span>
 <span>    <span class="op">)</span></span></code></pre></div>
 </div>
+<div class="section level2">
+<h2 id="add-r-package-to-psa-github">Add R Package to PSA GitHub<a class="anchor" aria-label="anchor" href="#add-r-package-to-psa-github"></a>
+</h2>
+<p>First, you should confirm you have the ability to push to the
+PsySciAcc github organization at <a href="https://github.com/psysciacc" class="external-link uri">https://github.com/psysciacc</a>. Please ask to be added to
+the team.</p>
+<p>Second, you can use the <code><a href="../reference/psa_git.html">psa_git()</a></code> function to initialize
+your new project as a github repository associated with the PsySciAcc
+organization. You can then use your favorite way to github to push and
+pull to update the package. The default is to create a private
+repository until you are ready to release the project.</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/psa_git.html">psa_git</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+</div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
 </div>
