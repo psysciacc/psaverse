@@ -57,14 +57,37 @@ psa_add_documents <- function(
   if(!dir.exists(paste0(proj_path, "/", folder))) {
     dir.create(paste0(proj_path, "/", folder))
   }
-
+  # for recursive
   if (!is.null(path)){
-    suppressWarnings(
-      file.copy(from = path,
-              to = folder,
-              overwrite = should_replace,
-              recursive = recursive)
-    )
+
+    if (recursive){
+      files_copy <- list.files(path = path,
+                               full.names = TRUE,
+                               include.dirs = TRUE,
+                               recursive = recursive)
+      sapply(files_copy, FUN = function(x){
+        file.copy(from = x,
+                  to = folder,
+                  overwrite = should_replace,
+                  recursive = recursive)
+      })
+
+    } else {
+
+      # get all the files in the directory
+      files_copy <- list.files(path = path,
+                               full.names = TRUE,
+                               include.dirs = FALSE)
+      files_copy <- files_copy[!file.info(files_copy)$isdir]
+      sapply(files_copy, FUN = function(x){
+        file.copy(from = x,
+                  to = folder,
+                  overwrite = should_replace,
+                  recursive = recursive)
+      })
+
+    }
+
   }
 
 }
