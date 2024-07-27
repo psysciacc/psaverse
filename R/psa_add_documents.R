@@ -54,17 +54,15 @@ psa_add_documents <- function(
   )
 
   # check directory exists
-  if(!dir.exists(paste0(proj_path, "/", folder))) {
-    dir.create(paste0(proj_path, "/", folder))
+  if(!dir.exists(file.path(proj_path, folder))) {
+    dir.create(file.path(proj_path, folder))
   }
 
   if (!is.null(path)){
-    suppressWarnings(
       file.copy(from = path,
               to = folder,
               overwrite = should_replace,
               recursive = recursive)
-    )
   }
 
 }
