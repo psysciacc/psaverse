@@ -44,7 +44,7 @@ test_that("single file, no overwrite", {
 
 
   # Attempt to move non-existent file
-  expect_warning(psa_add_documents(folder = "ethics", path = file.path(sample_dir, "test0.txt")))
+  expect_error(psa_add_documents(folder = "ethics", path = file.path(sample_dir, "test0.txt")))
 
   # Modify file and do NOT overwrite
   write("New test", f1_path, append = FALSE)
@@ -112,23 +112,20 @@ test_that("directory, no overwrite, recursive", {
   psa_create_folder("all")
 
   # Copy samples directory to project
-  psa_add_documents(folder = "ethics", path = sample_dir)
+  psa_add_documents(folder = "ethics", path = sample_dir, recursive = TRUE)
 
   # Verify existence of files
-  new_sample_dir <- file.path("./inst/01_Ethics/samples")
-  new_sub_sample_dir <- file.path("./inst/01_Ethics/samples/subsamples")
-  expect_equal(dir.exists(new_sample_dir), TRUE)
+  new_sub_sample_dir <- file.path("./inst/01_Ethics/subsamples")
   expect_equal(dir.exists(new_sub_sample_dir), TRUE)
-  expect_equal(file.exists(file.path(new_sample_dir, "test1.txt")), TRUE)
-  expect_equal(file.exists(file.path(new_sample_dir, "test2.txt")), TRUE)
+  expect_equal(file.exists(file.path("./inst/01_Ethics", "test1.txt")), TRUE)
+  expect_equal(file.exists(file.path("./inst/01_Ethics", "test2.txt")), TRUE)
   expect_equal(file.exists(file.path(new_sub_sample_dir, "test3.txt")), TRUE)
 
   # Verify file contents
-  new_sample_dir <- file.path("./inst/01_Ethics/samples")
-  new_sub_sample_dir <- file.path("./inst/01_Ethics/samples/subsamples")
+  new_sub_sample_dir <- file.path("./inst/01_Ethics/subsamples")
 
-  line1 <- readLines(file.path(new_sample_dir, "test1.txt"), 1)
-  line2 <- readLines(file.path(new_sample_dir, "test2.txt"), 1)
+  line1 <- readLines(file.path("./inst/01_Ethics", "test1.txt"), 1)
+  line2 <- readLines(file.path("./inst/01_Ethics", "test1.txt"), 1)
   line3 <- readLines(file.path(new_sub_sample_dir, "test3.txt"), 1)
 
   expect_equal(line1, "Test")
@@ -136,22 +133,19 @@ test_that("directory, no overwrite, recursive", {
   expect_equal(line3, "Test")
 
 
-  psa_add_documents(folder = "extra", path = sample_dir)
+  psa_add_documents(folder = "extra", path = sample_dir, recursive = TRUE)
 
-  new_sample_dir <- file.path("./inst/08_Other/extra/samples")
-  new_sub_sample_dir <- file.path("./inst/08_Other/extra/samples/subsamples")
-  expect_equal(dir.exists(new_sample_dir), TRUE)
+  new_sub_sample_dir <- file.path("./inst/08_Other/extra/subsamples")
   expect_equal(dir.exists(new_sub_sample_dir), TRUE)
-  expect_equal(file.exists(file.path(new_sample_dir, "test1.txt")), TRUE)
-  expect_equal(file.exists(file.path(new_sample_dir, "test2.txt")), TRUE)
+  expect_equal(file.exists(file.path("./inst/08_Other/extra", "test1.txt")), TRUE)
+  expect_equal(file.exists(file.path("./inst/08_Other/extra", "test2.txt")), TRUE)
   expect_equal(file.exists(file.path(new_sub_sample_dir, "test3.txt")), TRUE)
 
   # Verify file contents
-  new_sample_dir <- file.path("./inst/08_Other/extra/samples")
-  new_sub_sample_dir <- file.path("./inst/08_Other/extra/samples/subsamples")
+  new_sub_sample_dir <- file.path("./inst/08_Other/extra/subsamples")
 
-  line1 <- readLines(file.path(new_sample_dir, "test1.txt"), 1)
-  line2 <- readLines(file.path(new_sample_dir, "test2.txt"), 1)
+  line1 <- readLines(file.path("./inst/08_Other/extra", "test1.txt"), 1)
+  line2 <- readLines(file.path("./inst/08_Other/extra", "test2.txt"), 1)
   line3 <- readLines(file.path(new_sub_sample_dir, "test3.txt"), 1)
 
   expect_equal(line1, "Test")
@@ -164,13 +158,12 @@ test_that("directory, no overwrite, recursive", {
   write("New test", f2_path, append = FALSE)
   write("New test", f3_path, append = FALSE)
 
-  psa_add_documents(folder = "extra", path = sample_dir)
+  psa_add_documents(folder = "extra", path = sample_dir, recursive = TRUE)
 
-  new_sample_dir <- file.path("./inst/01_Ethics/samples")
-  new_sub_sample_dir <- file.path("./inst/01_Ethics/samples/subsamples")
+  new_sub_sample_dir <- file.path("./inst/01_Ethics/subsamples")
 
-  line1 <- readLines(file.path(new_sample_dir, "test1.txt"), 1)
-  line2 <- readLines(file.path(new_sample_dir, "test2.txt"), 1)
+  line1 <- readLines(file.path("./inst/01_Ethics", "test1.txt"), 1)
+  line2 <- readLines(file.path("./inst/01_Ethics", "test2.txt"), 1)
   line3 <- readLines(file.path(new_sub_sample_dir, "test3.txt"), 1)
 
   expect_equal(line1, "Test") # Not overwritten
@@ -203,14 +196,13 @@ test_that("directory, overwrite, recursive", {
   psa_create_folder("all")
 
   # Add files to project
-  psa_add_documents(folder = "ethics", path = sample_dir)
+  psa_add_documents(folder = "ethics", path = sample_dir, recursive = TRUE)
 
   # Verify file contents
-  new_sample_dir <- file.path("./inst/01_Ethics/samples")
-  new_sub_sample_dir <- file.path("./inst/01_Ethics/samples/subsamples")
+  new_sub_sample_dir <- file.path("./inst/01_Ethics/subsamples")
 
-  line1 <- readLines(file.path(new_sample_dir, "test1.txt"), 1)
-  line2 <- readLines(file.path(new_sample_dir, "test2.txt"), 1)
+  line1 <- readLines(file.path("./inst/01_Ethics", "test1.txt"), 1)
+  line2 <- readLines(file.path("./inst/01_Ethics", "test2.txt"), 1)
   line3 <- readLines(file.path(new_sub_sample_dir, "test3.txt"), 1)
 
   expect_equal(line1, "Test")
@@ -223,13 +215,12 @@ test_that("directory, overwrite, recursive", {
   write("New test", f3_path, append = FALSE)
 
   # Overwrite samples directory in project
-  psa_add_documents(folder = "ethics", path = sample_dir, should_replace = TRUE)
+  psa_add_documents(folder = "ethics", path = sample_dir, should_replace = TRUE, recursive = TRUE)
 
-  new_sample_dir <- file.path("./inst/01_Ethics/samples")
-  new_sub_sample_dir <- file.path("./inst/01_Ethics/samples/subsamples")
+  new_sub_sample_dir <- file.path("./inst/01_Ethics/subsamples")
 
-  line1 <- readLines(file.path(new_sample_dir, "test1.txt"), 1)
-  line2 <- readLines(file.path(new_sample_dir, "test2.txt"), 1)
+  line1 <- readLines(file.path("./inst/01_Ethics", "test1.txt"), 1)
+  line2 <- readLines(file.path("./inst/01_Ethics", "test2.txt"), 1)
   line3 <- readLines(file.path(new_sub_sample_dir, "test3.txt"), 1)
 
   expect_equal(line1, "New test")
@@ -264,7 +255,6 @@ test_that("directory, no overwrite, no recursive", {
 
   # Copy samples directory to project
   psa_add_documents(folder = "ethics", path = sample_dir, recursive = FALSE)
-  print(list.files("./inst/01_Ethics"))
 
   new_sample_dir <- file.path("./inst/01_Ethics/samples")
   expect_equal(dir.exists(new_sample_dir), FALSE)
