@@ -1,10 +1,6 @@
-#' Create Folders in Project
+#' Add Documents to Project
 #'
-#' This function creates the requested folder according to the PSA project
-#' folder structure: 01_Ethics, 02_Power, 03_Materials, 04_Procedure, 05_Data,
-#' 06_Analysis, 07_Communication, 08_Other, all within the inst folder.
-#' If the argument is "all", creates all eight non-existing aforementioned
-#' folders. If the requested folder(s) already exist(s), throws an error.
+#' This function copies the requested file/directory to the specified folder within the project folder structure. If the requested folder does not already exist, it is created automatically.
 #'
 #' @param folder the folder to be added.
 #' - "ethics": creates the "01_Ethics" folder.
@@ -14,27 +10,30 @@
 #' - "data": creates the "05_Data" folder.
 #' - "analysis": creates the "06_Analysis" folder.
 #' - "communication": creates the "07_Communication folder.
-#' - "all": creates all eight main folders.
 #' Any other parameter option will be added into the 08_Other folder.
+#' @param path path of the requested file/directory. Must be a valid path within the current device.
+#' @param should_replace whether the requested file must overwrite an already existing one within the project.
+#' @param recursive whether directories should be copied recursively.
 #'
 #' @import usethis
-#' @keywords create folder
+#' @keywords add documents
 #'
 #' @return NULL
 #' @export
 #' @examples
 #' \dontrun{
-#' psa_create_folder("ethics")
-#' psa_create_folder("all")
+#' psa_add_documents(folder = "ethics", path = f1_path)
+#' psa_add_documents(folder = "ethics", path = sample_dir, recursive = TRUE)
 #' }
 psa_add_documents <- function(
     folder = NULL, # where should it go
     path = NULL, # to a single file or directory
     should_replace = FALSE, # overwrite existing files?
-    recursive = TRUE
+    recursive = FALSE
     ) {
 
   if(is.null(folder)){ stop("Please define a folder name to copy files into.")}
+  if(is.null(path)){ stop("Please specify a valid path to a file or directory.")}
 
   # Failsafe when psa_create_project does not create inst folder
   proj_path <- usethis:::proj_path()
@@ -54,39 +53,46 @@ psa_add_documents <- function(
   )
 
   # check directory exists
-  if(!dir.exists(paste0(proj_path, "/", folder))) {
-    dir.create(paste0(proj_path, "/", folder))
+  if(!dir.exists(file.path(proj_path, folder))) {
+    dir.create(file.path(proj_path, folder))
   }
-  # for recursive
-  if (!is.null(path)){
 
-    if (recursive){
-      files_copy <- list.files(path = path,
-                               full.names = TRUE,
-                               include.dirs = TRUE,
-                               recursive = recursive)
-      sapply(files_copy, FUN = function(x){
-        file.copy(from = x,
-                  to = folder,
-                  overwrite = should_replace,
-                  recursive = recursive)
-      })
+  # Check that path is valid
+  if (!file.exists(path)) { stop("Please specify a valid path to a file or directory.")}
 
-    } else {
+  # If path is a file, copy regardless of argument
+  if (!file.info(path)$isdir) {
+    file.copy(from = path,
+              to = folder,
+              overwrite = should_replace,
+              recursive = recursive)
+  }
+  else if (recursive){
+    # Path is a directory, copy recursively
+    files_copy <- list.files(path = path,
+                             full.names = TRUE,
+                             include.dirs = TRUE,
+                             recursive = recursive)
+    sapply(files_copy, FUN = function(x){
+      file.copy(from = x,
+                to = folder,
+                overwrite = should_replace,
+                recursive = recursive)
+    })
 
-      # get all the files in the directory
-      files_copy <- list.files(path = path,
-                               full.names = TRUE,
-                               include.dirs = FALSE)
-      files_copy <- files_copy[!file.info(files_copy)$isdir]
-      sapply(files_copy, FUN = function(x){
-        file.copy(from = x,
-                  to = folder,
-                  overwrite = should_replace,
-                  recursive = recursive)
-      })
-
-    }
+  }
+  else {
+    # get all the files in the directory
+    files_copy <- list.files(path = path,
+                             full.names = TRUE,
+                             include.dirs = FALSE)
+    files_copy <- files_copy[!file.info(files_copy)$isdir]
+    sapply(files_copy, FUN = function(x){
+      file.copy(from = x,
+                to = folder,
+                overwrite = should_replace,
+                recursive = recursive)
+    })
 
   }
 
