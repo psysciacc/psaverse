@@ -3,7 +3,6 @@
 export(psa_add_author)
 export(psa_add_documents)
 export(psa_check_folder)
-export(psa_create_description)
 export(psa_create_folder)
 export(psa_create_project)
 export(psa_data)
