@@ -40,13 +40,20 @@ psa_update_description(
     version = NULL,
     license = NULL
 )
+
+psa_add_author()
 ```
 
-## Add Dataset
+## Create Folder Structure
+
+```{r}
+psa_create_folder()
+```
+
+## Add Documents
 
 ```{r eval = F}
-psa_data(
-)
+psa_add_documents()
 ```
 
 ## Add R Package Dependencies
@@ -69,3 +76,10 @@ Second, you can use the `psa_git()` function to initialize your new project as a
 ```{r eval = F}
 psa_git()
 ```
+
+## Check Package
+
+```{r}
+psa_check_folder()
+```
+
