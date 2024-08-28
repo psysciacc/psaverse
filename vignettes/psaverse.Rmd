@@ -40,20 +40,52 @@ psa_update_description(
     version = NULL,
     license = NULL
 )
+```
 
-psa_add_author()
+You can add authors to the package for other project monitors or the lead author of the paper. 
+
+```{r eval = F}
+psa_add_author(
+   given = "Lucy",
+   family = "van Pelt",
+   role = c("aut", "cre"),
+   email = "lucy@example.com",
+   comment = c(ORCID = "LUCY-ORCID-ID")
+ }
 ```
 
 ## Create Folder Structure
 
-```{r}
-psa_create_folder()
+`psa_create_folder("all")` will create the entire folder structure for the package, while you can also add one at a time. 
+
+Other options: 
+
+- "ethics": creates the "01_Ethics" folder.
+- "power": creates the "02_Power" folder.
+- "materials": creates the "03_Materials" folder.
+- "procedure": creates the "04_Procedure" folder.
+- "data": creates the "05_Data" folder.
+- "analysis": creates the "06_Analysis" folder.
+- "communication": creates the "07_Communication folder.
+- "all": creates all eight main folders.
+- Any other parameter option will be added into the 08_Other folder.
+
+```{r eval = F}
+# will create all folders 
+psa_create_folder("all")
 ```
 
 ## Add Documents
 
+You can then manually move the files you need into the folder structure or use the `psa_add_documents()` function to add individual files or entire folders. 
+
 ```{r eval = F}
-psa_add_documents()
+psa_add_documents(
+  folder = "ethics", # where should it go
+  path = "~/Downloads", # to a single file or directory
+  should_replace = FALSE, # overwrite existing files?
+  recursive = TRUE
+)
 ```
 
 ## Add R Package Dependencies
@@ -67,7 +99,7 @@ psa_dependencies(
     )
 ```
 
-## Add R Package to PSA GitHub
+## Add this Package to PSA GitHub
 
 First, you should confirm you have the ability to push to the PsySciAcc github organization at https://github.com/psysciacc. Please ask to be added to the team. 
 
@@ -77,9 +109,13 @@ Second, you can use the `psa_git()` function to initialize your new project as a
 psa_git()
 ```
 
-## Check Package
+## Check Package Folders
 
-```{r}
-psa_check_folder()
+This function will check that you meet the minimum requires for documentation and files for the PSA folder structure. You will receive information on what you are missing. 
+
+Options: "ethics", "power", "materials", "procedure", "data", "analysis", "communication", "all". 
+
+```{r eval = F}
+psa_check_folder(folder = "ethics")
 ```
 
