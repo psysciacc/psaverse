@@ -57,19 +57,19 @@ psa_check_folder_ethics <- function(working_folder) {
   # Requirements at second depth level of ethics folder
   ethics_required <- c()
 
-  if(!require_pattern_in_folder(folder = file.path(working_folder, "./PI_IRB"), "V[0-9]+_IRB_Submission")) {
+  if(!require_pattern_in_folder(folder = file.path(working_folder, "PI_IRB"), "V[0-9]+_IRB_Submission")) {
     append(ethics_required, "PI_IRB/V[#]_IRB_Submission")
   }
-  if(!require_pattern_in_folder(folder = file.path(working_folder, "./PI_IRB"), "V[0-9]+_IRB_Approval")) {
+  if(!require_pattern_in_folder(folder = file.path(working_folder, "PI_IRB"), "V[0-9]+_IRB_Approval")) {
     append(ethics_required, "V[#]_IRB_Approval")
   }
-  if(!require_pattern_in_folder(folder = file.path(working_folder, "./Local_IRB"), "[0-9]+_[a-zA-z]+")) {
+  if(!require_pattern_in_folder(folder = file.path(working_folder, "Local_IRB"), "[0-9]+_[a-zA-z]+")) {
     append(ethics_required, "Local_IRB/NUMBER_Name")
   }
-  if(!require_pattern_in_folder(folder = file.path(working_folder, "./No_Ethics"), "[0-9]+_[a-zA-z]+")) {
+  if(!require_pattern_in_folder(folder = file.path(working_folder, "No_Ethics"), "[0-9]+_[a-zA-z]+")) {
     append(ethics_required, "Local_IRB/NUMBER_Name")
   }
-  if(!require_pattern_in_folder(folder = file.path(working_folder, "./Rely_PI"), "[0-9]+_[a-zA-z]+")) {
+  if(!require_pattern_in_folder(folder = file.path(working_folder, "Rely_PI"), "[0-9]+_[a-zA-z]+")) {
     append(ethics_required, "Local_IRB/NUMBER_Name")
   }
 
