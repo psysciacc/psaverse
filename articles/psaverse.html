@@ -85,18 +85,73 @@ new package R project will open automatically for you.</p>
 <code><a href="../reference/psa_update_description.html">psa_update_description()</a></code> function.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/psa_update_description.html">psa_update_description</a></span><span class="op">(</span></span>
-<span>    package_title <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>    package_title <span class="op">=</span> <span class="st">"SPAML IS GREAT"</span>,</span>
 <span>    description <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>    version <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>    license <span class="op">=</span> <span class="cn">NULL</span></span>
-<span><span class="op">)</span></span></code></pre></div>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># make sure default to null </span></span>
+<span></span>
+<span><span class="co"># make sure this updates on the current project </span></span>
+<span><span class="co"># seems to update the original folder </span></span>
+<span><span class="co"># function to make sure you are in the right project </span></span>
+<span><span class="co"># make sure we aren't reloading each time </span></span></code></pre></div>
+<p>You can add authors to the package for other project monitors or the
+lead author of the paper.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/psa_add_author.html">psa_add_author</a></span><span class="op">(</span></span>
+<span>   given <span class="op">=</span> <span class="st">"Lucy"</span>,</span>
+<span>   family <span class="op">=</span> <span class="st">"van Pelt"</span>,</span>
+<span>   role <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"aut"</span>, <span class="st">"cre"</span><span class="op">)</span>,</span>
+<span>   email <span class="op">=</span> <span class="st">"lucy@example.com"</span>,</span>
+<span>   comment <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>ORCID <span class="op">=</span> <span class="st">"LUCY-ORCID-ID"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># why isn't comment working </span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="add-dataset">Add Dataset<a class="anchor" aria-label="anchor" href="#add-dataset"></a>
+<h2 id="create-folder-structure">Create Folder Structure<a class="anchor" aria-label="anchor" href="#create-folder-structure"></a>
 </h2>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/psa_data.html">psa_data</a></span><span class="op">(</span></span>
-<span><span class="op">)</span></span></code></pre></div>
+<p><code>psa_create_folder("all")</code> will create the entire folder
+structure for the package, while you can also add one at a time.</p>
+<p>Other options:</p>
+<ul>
+<li>“ethics”: creates the “01_Ethics” folder.</li>
+<li>“power”: creates the “02_Power” folder.</li>
+<li>“materials”: creates the “03_Materials” folder.</li>
+<li>“procedure”: creates the “04_Procedure” folder.</li>
+<li>“data”: creates the “05_Data” folder.</li>
+<li>“analysis”: creates the “06_Analysis” folder.</li>
+<li>“communication”: creates the “07_Communication folder.</li>
+<li>“all”: creates all eight main folders.</li>
+<li>Any other parameter option will be added into the 08_Other
+folder.</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># will create all folders </span></span>
+<span><span class="fu"><a href="../reference/psa_create_folder.html">psa_create_folder</a></span><span class="op">(</span><span class="st">"all"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># also allow people to use the "real" folder names like 01_Ethics</span></span>
+<span><span class="fu"><a href="../reference/psa_create_folder.html">psa_create_folder</a></span><span class="op">(</span><span class="st">"cheese"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="add-documents">Add Documents<a class="anchor" aria-label="anchor" href="#add-documents"></a>
+</h2>
+<p>You can then manually move the files you need into the folder
+structure or use the <code><a href="../reference/psa_add_documents.html">psa_add_documents()</a></code> function to add
+individual files or entire folders.</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/psa_add_documents.html">psa_add_documents</a></span><span class="op">(</span></span>
+<span>  folder <span class="op">=</span> <span class="st">"ethics"</span>, <span class="co"># where should it go</span></span>
+<span>  path <span class="op">=</span> <span class="st">"~/Downloads"</span>, <span class="co"># to a single file or directory</span></span>
+<span>  should_replace <span class="op">=</span> <span class="cn">FALSE</span>, <span class="co"># overwrite existing files?</span></span>
+<span>  recursive <span class="op">=</span> <span class="cn">FALSE</span> <span class="co"># better explain this in docs </span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># recheck copying individual files </span></span>
+<span><span class="co"># path should allow vector of file paths like a list of PDFs</span></span>
+<span><span class="co"># or a directory </span></span>
+<span><span class="co"># or single file </span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="add-r-package-dependencies">Add R Package Dependencies<a class="anchor" aria-label="anchor" href="#add-r-package-dependencies"></a>
@@ -105,14 +160,17 @@ new package R project will open automatically for you.</p>
 format, you can use a convenience function to add all libraries that can
 be found in those scripts. The default is to examine all files in the
 <code>inst</code> folder and add those packages.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/psa_dependencies.html">psa_dependencies</a></span><span class="op">(</span></span>
 <span>    scan_folder <span class="op">=</span> <span class="st">"inst"</span>,</span>
 <span>    add_package <span class="op">=</span> <span class="cn">NULL</span> <span class="co"># has to be one at a time</span></span>
-<span>    <span class="op">)</span></span></code></pre></div>
+<span>    <span class="op">)</span></span>
+<span></span>
+<span><span class="co"># add qmd files </span></span>
+<span><span class="co"># allow for vector of packages to be added </span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="add-r-package-to-psa-github">Add R Package to PSA GitHub<a class="anchor" aria-label="anchor" href="#add-r-package-to-psa-github"></a>
+<h2 id="add-this-package-to-psa-github">Add this Package to PSA GitHub<a class="anchor" aria-label="anchor" href="#add-this-package-to-psa-github"></a>
 </h2>
 <p>First, you should confirm you have the ability to push to the
 PsySciAcc github organization at <a href="https://github.com/psysciacc" class="external-link uri">https://github.com/psysciacc</a>. Please ask to be added to
@@ -122,8 +180,28 @@ your new project as a github repository associated with the PsySciAcc
 organization. You can then use your favorite way to github to push and
 pull to update the package. The default is to create a private
 repository until you are ready to release the project.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/psa_git.html">psa_git</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="check-package-folders">Check Package Folders<a class="anchor" aria-label="anchor" href="#check-package-folders"></a>
+</h2>
+<p>This function will check that you meet the minimum requires for
+documentation and files for the PSA folder structure. You will receive
+information on what you are missing.</p>
+<p>Options: “ethics”, “power”, “materials”, “procedure”, “data”,
+“analysis”, “communication”, “all”.</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/psa_check_folder.html">psa_check_folder</a></span><span class="op">(</span>folder <span class="op">=</span> <span class="st">"ethics"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># be sure to set working directory to the project so make it a global function </span></span></code></pre></div>
+<p>working folder should not be empty if so make it “.”</p>
+<p>can’t write the testthat (or subfolders) for CRAN, so make sure it’s
+writing to a temp directory (check scienceverse)</p>
+<p><a href="https://scienceverse.github.io/scienceverse/index.html" class="external-link uri">https://scienceverse.github.io/scienceverse/index.html</a>
+<a href="https://github.com/scienceverse/scienceverse/" class="external-link uri">https://github.com/scienceverse/scienceverse/</a></p>
+<p><a href="https://github.com/debruine/booktem/blob/master/tests/testthat/test-create_book.R" class="external-link uri">https://github.com/debruine/booktem/blob/master/tests/testthat/test-create_book.R</a>
+- preclean up - and then if stops be sure to clean up as well</p>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
@@ -136,7 +214,7 @@ repository until you are ready to release the project.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
     </footer>
