@@ -35,18 +35,73 @@ You can update the description of the package using the `psa_update_description(
 
 ```{r eval = F}
 psa_update_description(
-    package_title = NULL,
+    package_title = "SPAML IS GREAT",
     description = NULL,
     version = NULL,
     license = NULL
 )
+
+# make sure default to null 
+
+# make sure this updates on the current project 
+# seems to update the original folder 
+# function to make sure you are in the right project 
+# make sure we aren't reloading each time 
 ```
 
-## Add Dataset
+You can add authors to the package for other project monitors or the lead author of the paper. 
 
 ```{r eval = F}
-psa_data(
+psa_add_author(
+   given = "Lucy",
+   family = "van Pelt",
+   role = c("aut", "cre"),
+   email = "lucy@example.com",
+   comment = c(ORCID = "LUCY-ORCID-ID"))
+
+# why isn't comment working 
+```
+
+## Create Folder Structure
+
+`psa_create_folder("all")` will create the entire folder structure for the package, while you can also add one at a time. 
+
+Other options: 
+
+- "ethics": creates the "01_Ethics" folder.
+- "power": creates the "02_Power" folder.
+- "materials": creates the "03_Materials" folder.
+- "procedure": creates the "04_Procedure" folder.
+- "data": creates the "05_Data" folder.
+- "analysis": creates the "06_Analysis" folder.
+- "communication": creates the "07_Communication folder.
+- "all": creates all eight main folders.
+- Any other parameter option will be added into the 08_Other folder.
+
+```{r eval = F}
+# will create all folders 
+psa_create_folder("all")
+
+# also allow people to use the "real" folder names like 01_Ethics
+psa_create_folder("cheese")
+```
+
+## Add Documents
+
+You can then manually move the files you need into the folder structure or use the `psa_add_documents()` function to add individual files or entire folders. 
+
+```{r eval = F}
+psa_add_documents(
+  folder = "ethics", # where should it go
+  path = "~/Downloads", # to a single file or directory
+  should_replace = FALSE, # overwrite existing files?
+  recursive = FALSE # better explain this in docs 
 )
+
+# recheck copying individual files 
+# path should allow vector of file paths like a list of PDFs
+# or a directory 
+# or single file 
 ```
 
 ## Add R Package Dependencies
@@ -58,9 +113,12 @@ psa_dependencies(
     scan_folder = "inst",
     add_package = NULL # has to be one at a time
     )
+
+# add qmd files 
+# allow for vector of packages to be added 
 ```
 
-## Add R Package to PSA GitHub
+## Add this Package to PSA GitHub
 
 First, you should confirm you have the ability to push to the PsySciAcc github organization at https://github.com/psysciacc. Please ask to be added to the team. 
 
@@ -69,3 +127,27 @@ Second, you can use the `psa_git()` function to initialize your new project as a
 ```{r eval = F}
 psa_git()
 ```
+
+## Check Package Folders
+
+This function will check that you meet the minimum requires for documentation and files for the PSA folder structure. You will receive information on what you are missing. 
+
+Options: "ethics", "power", "materials", "procedure", "data", "analysis", "communication", "all". 
+
+```{r eval = F}
+psa_check_folder(folder = "ethics")
+
+# be sure to set working directory to the project so make it a global function 
+```
+
+working folder should not be empty if so make it "."
+
+can't write the testthat (or subfolders) for CRAN, so make sure it's writing to a temp directory
+(check scienceverse)
+
+https://scienceverse.github.io/scienceverse/index.html
+https://github.com/scienceverse/scienceverse/
+
+https://github.com/debruine/booktem/blob/master/tests/testthat/test-create_book.R
+- preclean up
+- and then if stops be sure to clean up as well 
