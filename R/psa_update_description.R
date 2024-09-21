@@ -37,7 +37,7 @@ psa_update_description <- function(
     license = NULL
     ) {
 
-  proj_activate(proj_path())
+  setwd(proj_path())
   desc <- usethis:::proj_desc()
 
   fields_update <- list()
