@@ -25,7 +25,7 @@ First, you would need to run the `psa_create_project()` function including the p
 ```{r eval = F}
 psa_create_project(
   path = "~/Github", # path you want this on your computer
-  psa_name = "PSA007-SPAML" # name of the project 
+  psa_name = "PSA007-spaml" # name of the project 
 )
 ```
 
@@ -40,13 +40,6 @@ psa_update_description(
     version = NULL,
     license = NULL
 )
-
-# make sure default to null 
-
-# make sure this updates on the current project 
-# seems to update the original folder 
-# function to make sure you are in the right project 
-# make sure we aren't reloading each time 
 ```
 
 You can add authors to the package for other project monitors or the lead author of the paper. 
@@ -55,11 +48,9 @@ You can add authors to the package for other project monitors or the lead author
 psa_add_author(
    given = "Lucy",
    family = "van Pelt",
+   ORCID_number = "LUCY-ORCID-ID"
    role = c("aut", "cre"),
-   email = "lucy@example.com",
-   comment = c(ORCID = "LUCY-ORCID-ID"))
-
-# why isn't comment working 
+   email = "lucy@example.com")
 ```
 
 ## Create Folder Structure
@@ -82,8 +73,9 @@ Other options:
 # will create all folders 
 psa_create_folder("all")
 
-# also allow people to use the "real" folder names like 01_Ethics
 psa_create_folder("cheese")
+
+# make sure this works in markdown as well as regular script 
 ```
 
 ## Add Documents
