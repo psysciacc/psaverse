@@ -75,7 +75,7 @@ new package R project will open automatically for you.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/psa_create_project.html">psa_create_project</a></span><span class="op">(</span></span>
 <span>  path <span class="op">=</span> <span class="st">"~/Github"</span>, <span class="co"># path you want this on your computer</span></span>
-<span>  psa_name <span class="op">=</span> <span class="st">"PSA007-SPAML"</span> <span class="co"># name of the project </span></span>
+<span>  psa_name <span class="op">=</span> <span class="st">"PSA007-spaml"</span> <span class="co"># name of the project </span></span>
 <span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
@@ -89,25 +89,15 @@ new package R project will open automatically for you.</p>
 <span>    description <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>    version <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>    license <span class="op">=</span> <span class="cn">NULL</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># make sure default to null </span></span>
-<span></span>
-<span><span class="co"># make sure this updates on the current project </span></span>
-<span><span class="co"># seems to update the original folder </span></span>
-<span><span class="co"># function to make sure you are in the right project </span></span>
-<span><span class="co"># make sure we aren't reloading each time </span></span></code></pre></div>
+<span><span class="op">)</span></span></code></pre></div>
 <p>You can add authors to the package for other project monitors or the
 lead author of the paper.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/psa_add_author.html">psa_add_author</a></span><span class="op">(</span></span>
-<span>   given <span class="op">=</span> <span class="st">"Lucy"</span>,</span>
-<span>   family <span class="op">=</span> <span class="st">"van Pelt"</span>,</span>
-<span>   role <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"aut"</span>, <span class="st">"cre"</span><span class="op">)</span>,</span>
-<span>   email <span class="op">=</span> <span class="st">"lucy@example.com"</span>,</span>
-<span>   comment <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>ORCID <span class="op">=</span> <span class="st">"LUCY-ORCID-ID"</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># why isn't comment working </span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">psa_add_author</span>(</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>   <span class="at">given =</span> <span class="st">"Lucy"</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>   <span class="at">family =</span> <span class="st">"van Pelt"</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>   <span class="at">ORCID_number =</span> <span class="st">"LUCY-ORCID-ID"</span></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>   <span class="at">role =</span> <span class="fu">c</span>(<span class="st">"aut"</span>, <span class="st">"cre"</span>),</span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>   <span class="at">email =</span> <span class="st">"lucy@example.com"</span>)</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="create-folder-structure">Create Folder Structure<a class="anchor" aria-label="anchor" href="#create-folder-structure"></a>
@@ -131,8 +121,9 @@ folder.</li>
 <code class="sourceCode R"><span><span class="co"># will create all folders </span></span>
 <span><span class="fu"><a href="../reference/psa_create_folder.html">psa_create_folder</a></span><span class="op">(</span><span class="st">"all"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># also allow people to use the "real" folder names like 01_Ethics</span></span>
-<span><span class="fu"><a href="../reference/psa_create_folder.html">psa_create_folder</a></span><span class="op">(</span><span class="st">"cheese"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="../reference/psa_create_folder.html">psa_create_folder</a></span><span class="op">(</span><span class="st">"cheese"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># make sure this works in markdown as well as regular script </span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="add-documents">Add Documents<a class="anchor" aria-label="anchor" href="#add-documents"></a>
