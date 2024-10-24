@@ -6,7 +6,7 @@
 #'
 #' @param folder name of the folder to be documented.
 #'
-#' @import usethis
+#' @import usethis knitr
 #' @keywords create metadata folder
 #'
 #' @return NULL
@@ -32,11 +32,15 @@ psa_create_metadata <- function(folder_path, overwrite = FALSE) {
   files_df <- data.frame(name = files,
                          isdir = are_files_dirs,
                          descriptions = descriptions)
+  markdown_table <- knitr::kable(files_df, format = "markdown",
+                                 row.names = FALSE)
+
 
 
   # Overwrite current README
   write("(FOLDER NAME) documentation\n\n", folder_readme, append = !overwrite)
   write("(SHORT DESCRIPTION)\n\n", folder_readme, append = TRUE)
   write("File information:\n", folder_readme, append = TRUE)
-  write.table(files_df, file = folder_readme, append = TRUE, sep = '\t')
+  cat(markdown_table, file = folder_readme, append = TRUE, sep = "\n")
+
 }
