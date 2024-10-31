@@ -21,7 +21,7 @@ test_that("error message with nonexistent folder", {
 })
 
 test_that("file existent", {
-  psa_create_metadata(ethics_path, overwrite = TRUE)
+  psa_create_metadata("ethics", overwrite = TRUE)
   expect_true(file.exists(file.path(ethics_path, "README.md")))
 })
 
