@@ -24,6 +24,20 @@ psa_create_metadata <- function(folder_path, overwrite = FALSE) {
     file.create(folder_readme)
   }
 
+  files_df <- psa_metadata_table(folder_path)
+
+  markdown_table <- knitr::kable(files_df, format = "markdown",
+                                 row.names = FALSE)
+
+  # Overwrite current README
+  write("(FOLDER NAME) documentation\n\n", folder_readme, append = !overwrite)
+  write("(SHORT DESCRIPTION)\n\n", folder_readme, append = TRUE)
+  write("File information:\n", folder_readme, append = TRUE)
+  cat(markdown_table, file = folder_readme, append = TRUE, sep = "\n")
+
+}
+
+psa_metadata_table <- function(folder_path) {
   files <- list.files(folder_path, full.names = TRUE) # Need full names for dir.exists
   are_files_dirs <- sapply(files, dir.exists)
   descriptions <- rep(c("INSERT FILE DESCRIPTION"), length(files))
@@ -32,15 +46,5 @@ psa_create_metadata <- function(folder_path, overwrite = FALSE) {
   files_df <- data.frame(name = files,
                          isdir = are_files_dirs,
                          descriptions = descriptions)
-  markdown_table <- knitr::kable(files_df, format = "markdown",
-                                 row.names = FALSE)
-
-
-
-  # Overwrite current README
-  write("(FOLDER NAME) documentation\n\n", folder_readme, append = !overwrite)
-  write("(SHORT DESCRIPTION)\n\n", folder_readme, append = TRUE)
-  write("File information:\n", folder_readme, append = TRUE)
-  cat(markdown_table, file = folder_readme, append = TRUE, sep = "\n")
-
+  return(files_df)
 }
