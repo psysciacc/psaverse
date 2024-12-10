@@ -57,7 +57,7 @@ psa_view_folder <- function(
   data_text <- readme_text[grepl("^\\|", readme_text)]
 
   # remove separator lines
-  data_text <- data_text[!grepl("\\|:----------------\\|", data_text)]
+  data_text <- data_text[!grepl("\\|:---.+\\|", data_text)]
   data_text <- sapply(data_text, function(row) substr(row, 2, nchar(row) - 1))
 
   # Split columns by whitespace and convert into dataframe
