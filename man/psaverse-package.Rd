@@ -18,13 +18,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: 
-
-Authors:
-\itemize{
-  \item Leonardo Marciaga \email{leonardomarciaga@gmail.com}
-  \item Erin M. Buchanan \email{buchananlab@gmail.com} (\href{https://orcid.org/0000-0002-9689-4189}{ORCID})
-}
+\strong{Maintainer}: Leonardo Marciaga \email{leonardomarciaga@gmail.com}
 
 }
 \keyword{internal}

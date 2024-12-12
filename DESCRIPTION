@@ -5,11 +5,11 @@ Authors@R: c(
     person(given = "Leonardo", 
            family = "Marciaga", 
            email = "leonardomarciaga@gmail.com", 
-           role = "aut"),
+           role = c("aut", "cre")),
     person(given = "Erin M.", 
            family = "Buchanan", 
            email = "buchananlab@gmail.com", 
-           role = "aut", 
+           role = c("aut", "cre"), 
            comment = c(ORCID = "0000-0002-9689-4189")))
 Description: This package will facilitate archiving and sharing all of the data and materials for Psychological Science Accelerator projects in a standardized, transparent way.
 License: CC BY 4.0
