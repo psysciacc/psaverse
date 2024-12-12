@@ -1,15 +1,19 @@
 #' Create PSA Project
 #'
-#' DESCRIPTION
-#' ADD INFORMATION ABOUT \\ OR / FOR WINDOWS
+#' Use this function to initialize a PSA structured R project
+#' to put on GitHub and share. Remember that file paths need
+#' to be either "C:/Windows/blah" or "C:\\Windows\\blah" if you
+#' are using a Windows machine.
+#'
 #'
 #' @param path path to directory where the local project will be
 #' @param psa_name name of the repo (e.g., PSA000-demo)
 #' @param given given name of first author
 #' @param family family name of first author
-#' @param middle middle name of first author
 #' @param email email address of first author
-#' @param role role of first author, usually "aut" and "cre"; refer to the documentation for utils::person() for more details.
+#' @param role role of first author, usually "aut" and "cre";
+#'  refer to the documentation for utils::person() for more details.
+#'  You may only have one "cre" (maintainer).
 #' @param comment additional information, e.g. ORCID number
 #'
 #' @import usethis
@@ -28,7 +32,6 @@ psa_create_project <- function(path = "./",
                                psa_name = "PSA000-demo",
                                given = NULL,
                                family = NULL,
-                               middle = NULL,
                                email = NULL,
                                role = NULL,
                                comment = NULL) {
@@ -39,8 +42,9 @@ psa_create_project <- function(path = "./",
   name_ok <- grepl("^[A-Z]{3,6}[0-9]{3}-[a-z0-9]{1,15}$", psa_name)
   if (!name_ok) {
     stop("PSA-style names are usually in a format like 'PSA001-faces',
-         with the project code made of uppercase letters and 3 numbers, a dash,
-         and then a short name (1 to 15 characters) made of only lowercase letters
+         with the project code made of uppercase letters and 3
+         numbers, a dash, and then a short name (1 to 15 characters)
+         made of only lowercase letters
          and numbers.")
   }
 
@@ -56,7 +60,6 @@ psa_create_project <- function(path = "./",
     fields = list(Title = paste0("Data Archive for", " ", psa_name),
                   "Authors@R" = person(given = given,
                                         family = family,
-                                        middle = middle,
                                         email = email,
                                         role = role,
                                         comment = comment),
@@ -66,13 +69,15 @@ psa_create_project <- function(path = "./",
 
   ui_info("This package makes use of the CC BY 4.0 license.")
 
-  if (is.null(given) && is.null(family) && is.null(middle)
-      && is.null(email) && is.null(role) && is.null(comment)) {
+  if (is.null(given) && is.null(family) &&
+      is.null(email) && is.null(role) && is.null(comment)) {
 
-    ui_todo("No author information supplied. Please execute the psa_add_author function to add more authors.")
+    ui_todo("No author information supplied. Please execute the
+            psa_add_author function to add more authors.")
   }
 
-  ui_todo("Refer to the function psa_create_description to add more information to the DESCRIPTION file, or manually edit it.")
+  ui_todo("Refer to the function psa_create_description to add
+          more information to the DESCRIPTION file, or manually edit it.")
 
   ui_done("Done!")
 

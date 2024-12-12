@@ -9,7 +9,6 @@ psa_create_project(
   psa_name = "PSA000-demo",
   given = NULL,
   family = NULL,
-  middle = NULL,
   email = NULL,
   role = NULL,
   comment = NULL
@@ -24,17 +23,19 @@ psa_create_project(
 
 \item{family}{family name of first author}
 
-\item{middle}{middle name of first author}
-
 \item{email}{email address of first author}
 
-\item{role}{role of first author, usually "aut" and "cre"; refer to the documentation for utils::person() for more details.}
+\item{role}{role of first author, usually "aut" and "cre";
+refer to the documentation for utils::person() for more details.
+You may only have one "cre" (maintainer).}
 
 \item{comment}{additional information, e.g. ORCID number}
 }
 \description{
-DESCRIPTION
-ADD INFORMATION ABOUT \\ OR / FOR WINDOWS
+Use this function to initialize a PSA structured R project
+to put on GitHub and share. Remember that file paths need
+to be either "C:/Windows/blah" or "C:\\Windows\\blah" if you
+are using a Windows machine.
 }
 \examples{
 \dontrun{

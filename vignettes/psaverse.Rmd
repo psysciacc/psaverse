@@ -20,7 +20,7 @@ library(psaverse)
 
 ## Setting up a PSA Project Package
 
-First, you would need to run the `psa_create_project()` function including the path you want to start the folder on your computer and the name of the project. After you run this function, the new package R project will open automatically for you.  
+First, you would need to run the `psa_create_project()` function including the path you want to start the folder on your computer and the name of the project. After you run this function, the new package *R* project will open automatically for you. Use that *R* project to complete the rest of the steps below to ensure files/folders go into the correct directories. 
 
 ```{r eval = F}
 psa_create_project(
@@ -31,14 +31,25 @@ psa_create_project(
 
 ## Create/Update Descriptions
 
-You can update the description of the package using the `psa_update_description()` function. 
+You can update the description of the package using the `psa_update_description()` function. Here are the license options:
+  
+  - MIT License: "MIT"
+  - Apache License 2.0: "Apache"
+  - GNU General Public License: "GPLv2" or "GPLv3"
+  - GNU Affero General Public License, version 3: "AGPLv3"
+  - GNU Lesser General Public License: "LGPLv2.1" or "LGPLv3"
+  - Creative Commons CC0 Public Domain Dedication: "CC0"
+  - Creative Commons Attribution 4.0 International: "CC-BY"
+  - Proprietary license: "Proprietary"
+  
+Note: say yes when it asks if you want to overwrite the license! 
 
 ```{r eval = F}
 psa_update_description(
-    package_title = "SPAML IS GREAT",
-    description = NULL,
-    version = NULL,
-    license = NULL
+  package_title = "SPAML IS GREAT",
+  description = "Here's a serious description of the project.",
+  version = "0.0.1",
+  license = "GPLv3"
 )
 ```
 
