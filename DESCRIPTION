@@ -2,14 +2,15 @@ Package: psaverse
 Title: Archive PSA Projects
 Version: 0.0.0.9000
 Authors@R: c(
-    person("Lisa", "DeBruine", , "debruine@gmail.com", role = c("aut", "cre"),
-           comment = c(ORCID = "0000-0002-7523-5539")),
-    person("Marton", "Kovacs", , "marton.balazs.kovacs@gmail.com", role = "aut",
-           comment = c(ORCID = "0000-0002-8142-8492")),
-    person("Erin", "Buchanan", , "buchananlab@gmail.com", role = "aut",
-           comment = c(ORCID = "0000-0002-9689-4189")),
-    person("Ekatarina", "Pronizius", , "katjapron@gmail.com", role = "aut",
-           comment = c(ORCID = "0000-0003-1446-196X")))
+    person(given = "Leonardo", 
+           family = "Marciaga", 
+           email = "leonardomarciaga@gmail.com", 
+           role = "aut"),
+    person(given = "Erin M.", 
+           family = "Buchanan", 
+           email = "buchananlab@gmail.com", 
+           role = "aut", 
+           comment = c(ORCID = "0000-0002-9689-4189")))
 Description: This package will facilitate archiving and sharing all of the data and materials for Psychological Science Accelerator projects in a standardized, transparent way.
 License: CC BY 4.0
 Encoding: UTF-8
@@ -18,9 +19,9 @@ RoxygenNote: 7.3.2
 Imports: 
     usethis,
     faux,
-    rio
+    rio, 
+    knitr
 Suggests: 
-    knitr,
     rmarkdown,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
