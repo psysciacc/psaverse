@@ -13,7 +13,7 @@
 #' - "procedure": creates the "04_Procedure" folder.
 #' - "data": creates the "05_Data" folder.
 #' - "analysis": creates the "06_Analysis" folder.
-#' - "communication": creates the "07_Communication folder.
+#' - "communication": creates the "07_Communication"folder.
 #' - "all": creates all eight main folders.
 #' Any other parameter option will be added into the 08_Other folder.
 #'
