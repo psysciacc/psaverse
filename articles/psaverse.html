@@ -14,8 +14,8 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
-<link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="psaverse">
 </head>
 <body>
@@ -71,7 +71,9 @@
 <p>First, you would need to run the <code><a href="../reference/psa_create_project.html">psa_create_project()</a></code>
 function including the path you want to start the folder on your
 computer and the name of the project. After you run this function, the
-new package R project will open automatically for you.</p>
+new package <em>R</em> project will open automatically for you. Use that
+<em>R</em> project to complete the rest of the steps below to ensure
+files/folders go into the correct directories.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/psa_create_project.html">psa_create_project</a></span><span class="op">(</span></span>
 <span>  path <span class="op">=</span> <span class="st">"~/Github"</span>, <span class="co"># path you want this on your computer</span></span>
@@ -82,13 +84,25 @@ new package R project will open automatically for you.</p>
 <h2 id="createupdate-descriptions">Create/Update Descriptions<a class="anchor" aria-label="anchor" href="#createupdate-descriptions"></a>
 </h2>
 <p>You can update the description of the package using the
-<code><a href="../reference/psa_update_description.html">psa_update_description()</a></code> function.</p>
+<code><a href="../reference/psa_update_description.html">psa_update_description()</a></code> function. Here are the license
+options:</p>
+<ul>
+<li>MIT License: “MIT”</li>
+<li>Apache License 2.0: “Apache”</li>
+<li>GNU General Public License: “GPLv2” or “GPLv3”</li>
+<li>GNU Affero General Public License, version 3: “AGPLv3”</li>
+<li>GNU Lesser General Public License: “LGPLv2.1” or “LGPLv3”</li>
+<li>Creative Commons CC0 Public Domain Dedication: “CC0”</li>
+<li>Creative Commons Attribution 4.0 International: “CC-BY”</li>
+<li>Proprietary license: “Proprietary”</li>
+</ul>
+<p>Note: say yes when it asks if you want to overwrite the license!</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/psa_update_description.html">psa_update_description</a></span><span class="op">(</span></span>
-<span>    package_title <span class="op">=</span> <span class="st">"SPAML IS GREAT"</span>,</span>
-<span>    description <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>    version <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>    license <span class="op">=</span> <span class="cn">NULL</span></span>
+<span>  package_title <span class="op">=</span> <span class="st">"SPAML IS GREAT"</span>,</span>
+<span>  description <span class="op">=</span> <span class="st">"Here's a serious description of the project."</span>,</span>
+<span>  version <span class="op">=</span> <span class="st">"0.0.1"</span>,</span>
+<span>  license <span class="op">=</span> <span class="st">"GPLv3"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p>You can add authors to the package for other project monitors or the
 lead author of the paper.</p>
@@ -201,7 +215,7 @@ writing to a temp directory (check scienceverse)</p>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Lisa DeBruine, Marton Kovacs, Erin Buchanan, Ekatarina Pronizius.</p>
+  <p>Developed by Leonardo Marciaga, Erin M. Buchanan.</p>
 </div>
 
 <div class="pkgdown-footer-right">
