@@ -15,7 +15,7 @@ psa_create_folder(folder = NULL)
 \item "procedure": creates the "04_Procedure" folder.
 \item "data": creates the "05_Data" folder.
 \item "analysis": creates the "06_Analysis" folder.
-\item "communication": creates the "07_Communication folder.
+\item "communication": creates the "07_Communication"folder.
 \item "all": creates all eight main folders.
 Any other parameter option will be added into the 08_Other folder.
 }}

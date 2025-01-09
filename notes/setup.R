@@ -6,4 +6,4 @@ roxygenize()
 
 devtools::check()
 
-devtools::install_github("psysciacc/psaverse@check-folder")
+devtools::install_github("psysciacc/psaverse")

@@ -18,13 +18,11 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Lisa DeBruine \email{debruine@gmail.com} (\href{https://orcid.org/0000-0002-7523-5539}{ORCID})
+\strong{Maintainer}: Erin M. Buchanan \email{buchananlab@gmail.com} (\href{https://orcid.org/0000-0002-9689-4189}{ORCID})
 
 Authors:
 \itemize{
-  \item Marton Kovacs \email{marton.balazs.kovacs@gmail.com} (\href{https://orcid.org/0000-0002-8142-8492}{ORCID})
-  \item Erin Buchanan \email{buchananlab@gmail.com} (\href{https://orcid.org/0000-0002-9689-4189}{ORCID})
-  \item Ekatarina Pronizius \email{katjapron@gmail.com} (\href{https://orcid.org/0000-0003-1446-196X}{ORCID})
+  \item Leonardo Marciaga \email{leonardomarciaga@gmail.com}
 }
 
 }

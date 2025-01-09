@@ -2,18 +2,17 @@
 % Please edit documentation in R/psa_check_folder.R
 \name{psa_check_folder}
 \alias{psa_check_folder}
-\title{Create PSA Project}
+\title{Check PSA Project Folder Structure}
 \usage{
 psa_check_folder(folder = "all")
 }
 \arguments{
-\item{path}{path to directory where the local project will be}
-
-\item{psa_name}{name of the repo (e.g., PSA000-demo)}
+\item{folder}{name of the folder to check (or "all") to check all folders.}
 }
 \description{
-DESCRIPTION
-ADD INFORMATION ABOUT \\ OR / FOR WINDOWS
+Checks the current project's folder structure according to the PSAVerse
+standard structure, either one project folder (i.e., 01_Ethics, 02_Power,
+etc.) at a time, or everything at once.
 }
-\keyword{create}
-\keyword{project}
+\keyword{check}
+\keyword{folder}
