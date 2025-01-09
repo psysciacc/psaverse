@@ -22,8 +22,6 @@ psa_add_author(
 \item{email}{email address of author}
 
 \item{role}{vector containing roles of author in the project, usually "aut" and "cre"; refer to utils::person() documentation for more information.}
-
-\item{middle}{middle name of author}
 }
 \description{
 Adds a person information to the \code{Authors@R} section of the DESCRIPTION

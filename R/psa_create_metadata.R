@@ -6,6 +6,8 @@
 #'
 #' @param folder name of the folder to be documented. If not "ethics", "power",
 #' ..., "other", must supply full path of the folder.
+#' @param overwrite TRUE/FALSE variable for if you want to overwrite a
+#' previously created metadata file
 #'
 #' @import usethis knitr
 #' @keywords create metadata folder

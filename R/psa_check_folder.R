@@ -13,7 +13,7 @@
 #' @export
 psa_check_folder <- function(folder = "all"){
 
-  proj_location <- usethis:::proj_path()
+  proj_location <- usethis::proj_path()
 
   if (folder == "all") {
     usethis::ui_info("Checking all folders...")
@@ -252,9 +252,9 @@ psa_check_folder_procedure <- function(working_folder) {
 
 psa_check_folder_data <- function(working_folder) {
   # Requirements
-  data_patterns <- c("README\\.md", "Raw Data", "Processed Data", "Scripts")
-  data_requirements <- c("README\\.md", "Raw Data", "Processed Data", "Scripts")
-  data_folders <- c("Raw Data", "Processed Data", "Scripts")
+  data_patterns <- c("README\\.md", "Raw Data", "Processed_Data", "Scripts")
+  data_requirements <- c("README\\.md", "Raw_Data", "Processed_Data", "Scripts")
+  data_folders <- c("Raw_Data", "Processed_Data", "Scripts")
 
   data_missing <- get_missing_reqs(data_patterns,
                                    data_requirements,

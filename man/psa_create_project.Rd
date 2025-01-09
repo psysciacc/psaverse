@@ -11,7 +11,8 @@ psa_create_project(
   family = NULL,
   email = NULL,
   role = NULL,
-  comment = NULL
+  comment = NULL,
+  open = FALSE
 )
 }
 \arguments{
@@ -30,6 +31,9 @@ refer to the documentation for utils::person() for more details.
 You may only have one "cre" (maintainer).}
 
 \item{comment}{additional information, e.g. ORCID number}
+
+\item{open}{Defaults to FALSE, determine if you want to
+immediately open the new package in an RStudio window.}
 }
 \description{
 Use this function to initialize a PSA structured R project

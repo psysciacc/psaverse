@@ -1,4 +1,27 @@
-
+#' Create PSA Citation for Project
+#'
+#' Allows the user to create the citation for the github and/or
+#' overall project for users to cite the data and files.
+#'
+#' @param bibtype	a character string with a BibTeX entry type.
+#' See Entry Types for details.
+#' @param title the title of the manuscript and/or title someone
+#' should use to cite this resource.
+#' @param author an author entry to include the author for citation.
+#' Please see the build project and/or update description for
+#' how to format author entries.
+#' @param journal The journal or other location to cite for the
+#' project.
+#' @param year The year of the citation for the project.
+#' @param url The url to include for the citation of the project.
+#' @param ... Other information that can be passed to bibentry to
+#' add more details for the citation of the project.
+#'
+#' @import usethis rbibutils backports
+#' @keywords create citation
+#'
+#' @return NULL
+#' @export
 
 psa_citation <- function(
     bibtype = "Article",
@@ -10,10 +33,8 @@ psa_citation <- function(
     ...
 ) {
 
-  proj_location <- usethis:::proj_path()
+  proj_location <- usethis::proj_path()
   setwd(proj_location)
-
-
 
   # Read description file and find author and title info
   if(title == "desc" || author == "desc") {
@@ -21,7 +42,7 @@ psa_citation <- function(
       stop("DESCRIPTION file does not exist: manually indicate title and
            author information or create DESCRIPTION file.")
     }
-    desc <- usethis:::proj_desc()
+    desc <- proj_desc()
     if(title == "desc") {
       title <- desc$get("Title")
     }
@@ -30,7 +51,7 @@ psa_citation <- function(
     }
   }
 
-  pkg_citation <- bibentry(
+  pkg_citation <- utils::bibentry(
     bibtype = bibtype,
     title = title,
     author = author,

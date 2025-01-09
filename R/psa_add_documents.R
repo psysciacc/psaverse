@@ -36,7 +36,7 @@ psa_add_documents <- function(
   if(is.null(path)){ stop("Please specify a valid path to a file or directory.")}
 
   # Failsafe when psa_create_project does not create inst folder
-  proj_path <- usethis:::proj_path()
+  proj_path <- usethis::proj_path()
   if(!dir.exists(paste0(proj_path, "/inst"))) {
     dir.create(paste0(proj_path, "/inst"))
   }

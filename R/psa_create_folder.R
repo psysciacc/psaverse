@@ -35,7 +35,7 @@ psa_create_folder <- function(
                             use 'all' to create all folders.")}
 
   # Failsafe when psa_create_project does not create inst folder
-  proj_path <- usethis:::proj_path()
+  proj_path <- usethis::proj_path()
   if(!dir.exists(paste0(proj_path, "/inst"))) {
     dir.create(paste0(proj_path, "/inst"))
   }

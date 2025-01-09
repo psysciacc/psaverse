@@ -9,6 +9,9 @@ psa_create_metadata(folder, overwrite = FALSE)
 \arguments{
 \item{folder}{name of the folder to be documented. If not "ethics", "power",
 ..., "other", must supply full path of the folder.}
+
+\item{overwrite}{TRUE/FALSE variable for if you want to overwrite a
+previously created metadata file}
 }
 \description{
 Input: a folder in inst.

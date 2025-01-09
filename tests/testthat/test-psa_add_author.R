@@ -26,7 +26,7 @@ test_that("example", {
     email = "babbage@example.com"
   )
 
-  desc <- usethis:::proj_desc()
+  desc <- proj_desc()
   expect_equal(as.character(desc$get_authors()[[1]]), "Ada Lovelace <lovelace@example.com> [aut, cre] (ADA-ORCID-ID)")
   expect_equal(as.character(desc$get_authors()[[2]]), "Charles Babbage <babbage@example.com> [aut, cre] (CHARLES-ORCID-ID)")
 

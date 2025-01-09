@@ -16,7 +16,7 @@
 #' - "communication": "07_Communication"
 #' - "other": "08_Other"
 #'
-#' @import usethis
+#' @import usethis utils
 #' @keywords view metadata
 #' @return a dataframe of file information for the folder
 #' @export
@@ -61,7 +61,7 @@ psa_view_folder <- function(
   data_text <- sapply(data_text, function(row) substr(row, 2, nchar(row) - 1))
 
   # Split columns by whitespace and convert into dataframe
-  table_df <- read.table(text = data_text, header = TRUE, sep = "|")
+  table_df <- utils::read.table(text = data_text, header = TRUE, sep = "|")
 
   return(table_df)
 

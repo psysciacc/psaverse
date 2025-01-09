@@ -8,7 +8,6 @@
 #'
 #' @param given given name of author
 #' @param family family name of author
-#' @param middle middle name of author
 #' @param ORCID_number ORCID number associated with author
 #' @param email email address of author
 #' @param role vector containing roles of author in the project, usually "aut" and "cre"; refer to utils::person() documentation for more information.

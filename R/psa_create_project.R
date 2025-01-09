@@ -15,6 +15,8 @@
 #'  refer to the documentation for utils::person() for more details.
 #'  You may only have one "cre" (maintainer).
 #' @param comment additional information, e.g. ORCID number
+#' @param open Defaults to FALSE, determine if you want to
+#' immediately open the new package in an RStudio window.
 #'
 #' @import usethis
 #'
@@ -34,7 +36,8 @@ psa_create_project <- function(path = "./",
                                family = NULL,
                                email = NULL,
                                role = NULL,
-                               comment = NULL) {
+                               comment = NULL,
+                               open = FALSE) {
 
   # check the name of the project
   ui_todo("Checking...")
@@ -58,13 +61,14 @@ psa_create_project <- function(path = "./",
   create_package(
     path = paste0(path, "/", psa_name),
     fields = list(Title = paste0("Data Archive for", " ", psa_name),
-                  "Authors@R" = person(given = given,
+                  "Authors@R" = utils::person(given = given,
                                         family = family,
                                         email = email,
                                         role = role,
                                         comment = comment),
                   License = use_ccby_license()),
-    check_name = FALSE
+    check_name = FALSE,
+    open = open
   )
 
   ui_info("This package makes use of the CC BY 4.0 license.")
@@ -78,6 +82,8 @@ psa_create_project <- function(path = "./",
 
   ui_todo("Refer to the function psa_create_description to add
           more information to the DESCRIPTION file, or manually edit it.")
+
+  ui_todo(paste0("Creating package at: ", path, "/", psa_name))
 
   ui_done("Done!")
 

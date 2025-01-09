@@ -38,7 +38,7 @@ psa_update_description <- function(
     ) {
 
   setwd(proj_path())
-  desc <- usethis:::proj_desc()
+  desc <- proj_desc()
 
   fields_update <- list()
   if (!is.null(package_title)) {
