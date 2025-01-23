@@ -9,7 +9,8 @@
 #'
 #' @param scan_folder which folder should be examined for .R or .Rmd
 #'  files to find package libraries
-#' @param add_package Add a single package directly
+#' @param add_package Add a single or set of packages to the project,
+#' use c("package", "package") to include several at once.
 #'
 #' @import usethis
 #' @keywords dependencies
@@ -20,12 +21,14 @@
 #' # psa_dependencies(scan_folder = "inst")
 psa_dependencies <- function(
     scan_folder = "inst",
-    add_package = NULL # has to be one at a time
+    add_package = NULL
     ) {
 
   if (!is.null(add_package)){
 
-    use_package(add_package)
+    for (i in 1:length(add_package)){
+      usethis::use_package(add_package[i])
+    }
 
   } else {
     # get all the files in inst
@@ -34,7 +37,7 @@ psa_dependencies <- function(
       recursive = TRUE,
       include.dirs = TRUE,
       full.names = TRUE,
-      pattern = "*.R|*.Rmd"
+      pattern = "*.R|*.Rmd|*.qmd"
     )
 
     for (i in 1:length(all.files)){

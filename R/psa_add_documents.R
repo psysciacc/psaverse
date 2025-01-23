@@ -22,8 +22,11 @@
 #' @export
 #' @examples
 #' \dontrun{
-#' psa_add_documents(folder = "ethics", path = f1_path)
-#' psa_add_documents(folder = "ethics", path = sample_dir, recursive = TRUE)
+#' psa_add_documents(folder = "ethics",
+#'   path = "~/Downloads")
+#' psa_add_documents(folder = "ethics",
+#'   path = "~/Downloads",
+#'   recursive = TRUE)
 #' }
 psa_add_documents <- function(
     folder = NULL, # where should it go

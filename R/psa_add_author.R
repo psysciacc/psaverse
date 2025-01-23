@@ -10,7 +10,9 @@
 #' @param family family name of author
 #' @param ORCID_number ORCID number associated with author
 #' @param email email address of author
-#' @param role vector containing roles of author in the project, usually "aut" and "cre"; refer to utils::person() documentation for more information.
+#' @param role vector containing roles of author in the project,
+#' usually "aut" and "cre"; refer to utils::person() documentation for
+#' more information.
 #'
 #' @import usethis
 #' @keywords add author
@@ -24,7 +26,7 @@
 #'   family = "van Pelt",
 #'   role = c("aut", "cre"),
 #'   email = "lucy@example.com",
-#'   comment = c(ORCID = "LUCY-ORCID-ID")
+#'   ORCID_number = "LUCY-ORCID-ID")
 #' }
 #'
 #'

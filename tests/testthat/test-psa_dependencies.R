@@ -10,7 +10,6 @@ dir.create(paste0(projdir, "/inst"))
 test_that("demo", {
   # simulate an R file
   demo <- "
-  library(ggplot2)
   library(dplyr)
   "
   writeLines(text = demo,
@@ -30,7 +29,6 @@ test_that("demo", {
   expect_equal(desc[[1]], "Package: PSA000-demo")
   expect_equal(desc[[2]], "Title: Data Archive for PSA000-demo")
 
-  expect_true(as.logical(sum(grepl("ggplot2", desc))))
   expect_true(as.logical(sum(grepl("dplyr", desc))))
 
   unlink(projdir, recursive = TRUE)

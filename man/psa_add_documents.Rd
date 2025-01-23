@@ -35,8 +35,11 @@ This function copies the requested file/directory to the specified folder within
 }
 \examples{
 \dontrun{
-psa_add_documents(folder = "ethics", path = f1_path)
-psa_add_documents(folder = "ethics", path = sample_dir, recursive = TRUE)
+psa_add_documents(folder = "ethics",
+  path = "~/Downloads")
+psa_add_documents(folder = "ethics",
+  path = "~/Downloads",
+  recursive = TRUE)
 }
 }
 \keyword{add}

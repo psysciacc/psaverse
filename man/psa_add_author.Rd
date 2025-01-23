@@ -21,7 +21,9 @@ psa_add_author(
 
 \item{email}{email address of author}
 
-\item{role}{vector containing roles of author in the project, usually "aut" and "cre"; refer to utils::person() documentation for more information.}
+\item{role}{vector containing roles of author in the project,
+usually "aut" and "cre"; refer to utils::person() documentation for
+more information.}
 }
 \description{
 Adds a person information to the \code{Authors@R} section of the DESCRIPTION
@@ -35,7 +37,7 @@ psa_add_author(
   family = "van Pelt",
   role = c("aut", "cre"),
   email = "lucy@example.com",
-  comment = c(ORCID = "LUCY-ORCID-ID")
+  ORCID_number = "LUCY-ORCID-ID")
 }
 
 
