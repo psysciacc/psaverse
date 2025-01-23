@@ -63,21 +63,36 @@
 
     
     
+<div class="section level2">
+<h2 id="install-the-package">Install the Package<a class="anchor" aria-label="anchor" href="#install-the-package"></a>
+</h2>
+<p>Use <code>devtools</code> or <code>remotes</code> to install the
+package:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/" class="external-link">devtools</a></span><span class="op">)</span></span>
+<span><span class="fu">install_github</span><span class="op">(</span><span class="st">"psysciacc/psaverse"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="load-the-library">Load the Library<a class="anchor" aria-label="anchor" href="#load-the-library"></a>
+</h2>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://psysciacc.org/psaverse/">psaverse</a></span><span class="op">)</span></span></code></pre></div>
+</div>
 <div class="section level2">
 <h2 id="setting-up-a-psa-project-package">Setting up a PSA Project Package<a class="anchor" aria-label="anchor" href="#setting-up-a-psa-project-package"></a>
 </h2>
 <p>First, you would need to run the <code><a href="../reference/psa_create_project.html">psa_create_project()</a></code>
 function including the path you want to start the folder on your
 computer and the name of the project. After you run this function, the
-new package <em>R</em> project will open automatically for you. Use that
-<em>R</em> project to complete the rest of the steps below to ensure
-files/folders go into the correct directories.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+new package <em>R</em> project will open automatically for you (unless
+you change open to <code>FALSE</code>). Use that <em>R</em> project to
+complete the rest of the steps below to ensure files/folders go into the
+correct directories.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/psa_create_project.html">psa_create_project</a></span><span class="op">(</span></span>
 <span>  path <span class="op">=</span> <span class="st">"~/Github"</span>, <span class="co"># path you want this on your computer</span></span>
-<span>  psa_name <span class="op">=</span> <span class="st">"PSA007-spaml"</span> <span class="co"># name of the project </span></span>
+<span>  psa_name <span class="op">=</span> <span class="st">"PSA007-spaml"</span>, <span class="co"># name of the project </span></span>
+<span>  open <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
@@ -97,8 +112,9 @@ options:</p>
 <li>Proprietary license: “Proprietary”</li>
 </ul>
 <p>Note: say yes when it asks if you want to overwrite the license!</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/psa_update_description.html">psa_update_description</a></span><span class="op">(</span></span>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://psysciacc.org/psaverse/">psaverse</a></span><span class="op">)</span> <span class="co"># since you are in a new project</span></span>
+<span><span class="fu"><a href="../reference/psa_update_description.html">psa_update_description</a></span><span class="op">(</span></span>
 <span>  package_title <span class="op">=</span> <span class="st">"SPAML IS GREAT"</span>,</span>
 <span>  description <span class="op">=</span> <span class="st">"Here's a serious description of the project."</span>,</span>
 <span>  version <span class="op">=</span> <span class="st">"0.0.1"</span>,</span>
@@ -106,12 +122,42 @@ options:</p>
 <span><span class="op">)</span></span></code></pre></div>
 <p>You can add authors to the package for other project monitors or the
 lead author of the paper.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">psa_add_author</span>(</span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>   <span class="at">given =</span> <span class="st">"Lucy"</span>,</span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>   <span class="at">family =</span> <span class="st">"van Pelt"</span>,</span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>   <span class="at">ORCID_number =</span> <span class="st">"LUCY-ORCID-ID"</span></span>
-<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>   <span class="at">role =</span> <span class="fu">c</span>(<span class="st">"aut"</span>, <span class="st">"cre"</span>),</span>
-<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>   <span class="at">email =</span> <span class="st">"lucy@example.com"</span>)</span></code></pre></div>
+<p>Each author can have one or more roles, indicated by a character
+string. Common roles include:</p>
+<ul>
+<li>“cre”: The “creator” or maintainer of the package. This is required
+and only one person can be designated with this role.</li>
+<li>“aut”: Authors who contributed to the package (other than the
+maintainer).</li>
+<li>“cph”: Contributors who hold copyright on the package.</li>
+<li>“ctb”: Contributors who helped but are not full authors (e.g.,
+provided bug fixes, advice, or minor contributions).</li>
+<li>“rev”: Reviewers.</li>
+<li>“trl”: Translator(s).</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/psa_add_author.html">psa_add_author</a></span><span class="op">(</span></span>
+<span>  given <span class="op">=</span> <span class="st">"Lucy"</span>,</span>
+<span>  family <span class="op">=</span> <span class="st">"van Pelt"</span>,</span>
+<span>  role <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"aut"</span>, <span class="st">"cre"</span><span class="op">)</span>,</span>
+<span>  email <span class="op">=</span> <span class="st">"lucy@example.com"</span>,</span>
+<span>  ORCID_number <span class="op">=</span> <span class="st">"LUCY-ORCID-ID"</span><span class="op">)</span></span></code></pre></div>
+<p>If you check the description file, you will now see that it has the
+new author and description:</p>
+<pre><code>Package: PSA007-spaml
+Title: SPAML IS GREAT
+Version: 0.0.1
+Authors@R: 
+    person("Lucy", "van Pelt", , "lucy@example.com", role = c("aut", "cre"),
+           comment = c(ORCID = "LUCY-ORCID-ID"))
+Description: Here's a serious description of the project.
+License: GPL (&gt;= 3)
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2</code></pre>
+<p>If you want to add more, you can use this function, but if you want
+to delete people, you will need to manually edit the description file.
+It’s a text file that can be opened with RStudio or a text editor.</p>
 </div>
 <div class="section level2">
 <h2 id="create-folder-structure">Create Folder Structure<a class="anchor" aria-label="anchor" href="#create-folder-structure"></a>
@@ -131,13 +177,12 @@ structure for the package, while you can also add one at a time.</p>
 <li>Any other parameter option will be added into the 08_Other
 folder.</li>
 </ul>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># will create all folders </span></span>
 <span><span class="fu"><a href="../reference/psa_create_folder.html">psa_create_folder</a></span><span class="op">(</span><span class="st">"all"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="../reference/psa_create_folder.html">psa_create_folder</a></span><span class="op">(</span><span class="st">"cheese"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># make sure this works in markdown as well as regular script </span></span></code></pre></div>
+<span><span class="co"># this will put a new folder in the other folder</span></span>
+<span><span class="fu"><a href="../reference/psa_create_folder.html">psa_create_folder</a></span><span class="op">(</span><span class="st">"cheese"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="add-documents">Add Documents<a class="anchor" aria-label="anchor" href="#add-documents"></a>
@@ -145,18 +190,15 @@ folder.</li>
 <p>You can then manually move the files you need into the folder
 structure or use the <code><a href="../reference/psa_add_documents.html">psa_add_documents()</a></code> function to add
 individual files or entire folders.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/psa_add_documents.html">psa_add_documents</a></span><span class="op">(</span></span>
 <span>  folder <span class="op">=</span> <span class="st">"ethics"</span>, <span class="co"># where should it go</span></span>
 <span>  path <span class="op">=</span> <span class="st">"~/Downloads"</span>, <span class="co"># to a single file or directory</span></span>
 <span>  should_replace <span class="op">=</span> <span class="cn">FALSE</span>, <span class="co"># overwrite existing files?</span></span>
-<span>  recursive <span class="op">=</span> <span class="cn">FALSE</span> <span class="co"># better explain this in docs </span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># recheck copying individual files </span></span>
-<span><span class="co"># path should allow vector of file paths like a list of PDFs</span></span>
-<span><span class="co"># or a directory </span></span>
-<span><span class="co"># or single file </span></span></code></pre></div>
+<span>  recursive <span class="op">=</span> <span class="cn">FALSE</span> <span class="co"># move all subfolders as well </span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p>This function will print out a list of files moved for you, and you
+can see that it copied the files over into your folder.</p>
 </div>
 <div class="section level2">
 <h2 id="add-r-package-dependencies">Add R Package Dependencies<a class="anchor" aria-label="anchor" href="#add-r-package-dependencies"></a>
@@ -165,14 +207,49 @@ individual files or entire folders.</p>
 format, you can use a convenience function to add all libraries that can
 be found in those scripts. The default is to examine all files in the
 <code>inst</code> folder and add those packages.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/psa_dependencies.html">psa_dependencies</a></span><span class="op">(</span></span>
 <span>    scan_folder <span class="op">=</span> <span class="st">"inst"</span>,</span>
-<span>    add_package <span class="op">=</span> <span class="cn">NULL</span> <span class="co"># has to be one at a time</span></span>
-<span>    <span class="op">)</span></span>
-<span></span>
-<span><span class="co"># add qmd files </span></span>
-<span><span class="co"># allow for vector of packages to be added </span></span></code></pre></div>
+<span>    add_package <span class="op">=</span> <span class="cn">NULL</span> </span>
+<span>    <span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="create-metadata-for-each-folder">Create Metadata for Each Folder<a class="anchor" aria-label="anchor" href="#create-metadata-for-each-folder"></a>
+</h2>
+<p>We want to make sure people can use these files. Use the
+<code><a href="../reference/psa_create_metadata.html">psa_create_metadata()</a></code> function to create a metadata csv
+file. You will then need to manually edit that file. Folder options are
+the same as above.</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/psa_create_metadata.html">psa_create_metadata</a></span><span class="op">(</span><span class="st">"ethics"</span>, </span>
+<span>                    overwrite <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<p>The function creates a <code>README.md</code> or adds to the bottom
+of your current readme. You will see output like this:</p>
+<pre><code>(FOLDER NAME) documentation
+
+
+(SHORT DESCRIPTION)
+
+
+File information:
+
+|name                                          |isdir |descriptions            |
+|:---------------------------------------------|:-----|:-----------------------|
+|Roles_Data.csv                                |FALSE |INSERT FILE DESCRIPTION |
+|supplementary data and codes.zip              |FALSE |INSERT FILE DESCRIPTION |</code></pre>
+<p>You should fill information that is IN CAPS, such as the folder name,
+description of the folder, and the description of the files. Note that
+the structure of the file information folder is a markdown table, so do
+not delete the <code>|</code> or <code>---</code> to ensure that the
+table renders correctly.</p>
+</div>
+<div class="section level2">
+<h2 id="view-folder-information">View Folder Information<a class="anchor" aria-label="anchor" href="#view-folder-information"></a>
+</h2>
+<p>The user of your package will then be able to view the folder
+contents in a dataframe using <code><a href="../reference/psa_view_folder.html">psa_view_folder()</a></code>:</p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/psa_view_folder.html">psa_view_folder</a></span><span class="op">(</span>folder <span class="op">=</span> <span class="st">"ethics"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="add-this-package-to-psa-github">Add this Package to PSA GitHub<a class="anchor" aria-label="anchor" href="#add-this-package-to-psa-github"></a>
@@ -185,8 +262,16 @@ your new project as a github repository associated with the PsySciAcc
 organization. You can then use your favorite way to github to push and
 pull to update the package. The default is to create a private
 repository until you are ready to release the project.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/psa_git.html">psa_git</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p>If you see this message:</p>
+<pre><code>ℹ Defaulting to "https" Git protocol.
+Error in `check_uses_git()`:
+✖ Cannot detect that project is already a
+  Git repository.
+ℹ Do you need to run usethis::use_git()?</code></pre>
+<p>Simply click on <code><a href="https://usethis.r-lib.org/reference/use_git.html" class="external-link">usethis::use_git</a></code> to set up your folder
+as a GitHub repository. Then rerun <code><a href="../reference/psa_git.html">psa_git()</a></code>.</p>
 </div>
 <div class="section level2">
 <h2 id="check-package-folders">Check Package Folders<a class="anchor" aria-label="anchor" href="#check-package-folders"></a>
@@ -196,17 +281,59 @@ documentation and files for the PSA folder structure. You will receive
 information on what you are missing.</p>
 <p>Options: “ethics”, “power”, “materials”, “procedure”, “data”,
 “analysis”, “communication”, “all”.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/psa_check_folder.html">psa_check_folder</a></span><span class="op">(</span>folder <span class="op">=</span> <span class="st">"ethics"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># be sure to set working directory to the project so make it a global function </span></span></code></pre></div>
-<p>working folder should not be empty if so make it “.”</p>
-<p>can’t write the testthat (or subfolders) for CRAN, so make sure it’s
-writing to a temp directory (check scienceverse)</p>
-<p><a href="https://scienceverse.github.io/scienceverse/index.html" class="external-link uri">https://scienceverse.github.io/scienceverse/index.html</a>
-<a href="https://github.com/scienceverse/scienceverse/" class="external-link uri">https://github.com/scienceverse/scienceverse/</a></p>
-<p><a href="https://github.com/debruine/booktem/blob/master/tests/testthat/test-create_book.R" class="external-link uri">https://github.com/debruine/booktem/blob/master/tests/testthat/test-create_book.R</a>
-- preclean up - and then if stops be sure to clean up as well</p>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/psa_check_folder.html">psa_check_folder</a></span><span class="op">(</span>folder <span class="op">=</span> <span class="st">"ethics"</span><span class="op">)</span></span></code></pre></div>
+<p>You will then get feedback about how your project should be
+organized:</p>
+<pre><code>ℹ Checking O1_Ethics folder...
+• You need to include: 
+  - README.md
+  - lab_ethics_summary.csv
+  - Collaboration Agreement
+  - PI_IRB
+  - Local_IRB
+  - No_Ethics
+  - Rely_PI
+✔ Checking finished.</code></pre>
+<p>You can fix these issues and rerun the function until no messages
+remain.</p>
+</div>
+<div class="section level2">
+<h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
+</h2>
+<p>If you want to add a citation for the project, which can be separate
+than the citation for the package, you can use
+<code><a href="../reference/psa_citation.html">psa_citation()</a></code>. You can add any features that are allowable
+in <code><a href="https://rdrr.io/r/utils/bibentry.html" class="external-link">bibentry()</a></code>.</p>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/psa_citation.html">psa_citation</a></span><span class="op">(</span></span>
+<span>  bibtype <span class="op">=</span> <span class="st">"Article"</span>, <span class="co"># default</span></span>
+<span>    title <span class="op">=</span> <span class="st">"SPAML Greatness Achieved!"</span>,</span>
+<span>    author <span class="op">=</span> <span class="st">"Buchanan, E.M."</span>,</span>
+<span>    journal <span class="op">=</span> <span class="st">"The Magical Journal of Cognition"</span>,</span>
+<span>    year <span class="op">=</span> <span class="fl">2025</span>,</span>
+<span>    url <span class="op">=</span> <span class="st">"https://osf.io"</span>,</span>
+<span>    volume <span class="op">=</span> <span class="fl">12</span>,</span>
+<span>    number <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>    pages <span class="op">=</span> <span class="st">"45-67"</span>,</span>
+<span>    doi <span class="op">=</span> <span class="st">"10.1234/example.doi"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p>This function creates a <code>CITATION</code> file, which will look
+like this:</p>
+<pre><code><span><span class="fu"><a href="https://rdrr.io/r/utils/bibentry.html" class="external-link">bibentry</a></span><span class="op">(</span>bibtype <span class="op">=</span> <span class="st">"Article"</span>,</span>
+<span>         title <span class="op">=</span> <span class="st">"SPAML Greatness Achieved!"</span>,</span>
+<span>         author <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/person.html" class="external-link">person</a></span><span class="op">(</span>family <span class="op">=</span> <span class="st">"Buchanan"</span><span class="op">)</span>,</span>
+<span>                    <span class="fu"><a href="https://rdrr.io/r/utils/person.html" class="external-link">person</a></span><span class="op">(</span>family <span class="op">=</span> <span class="st">"E.M."</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>         journal <span class="op">=</span> <span class="st">"The Magical Journal of Cognition"</span>,</span>
+<span>         year <span class="op">=</span> <span class="st">"2025"</span>,</span>
+<span>         url <span class="op">=</span> <span class="st">"https://osf.io"</span>,</span>
+<span>         volume <span class="op">=</span> <span class="st">"12"</span>,</span>
+<span>         number <span class="op">=</span> <span class="st">"3"</span>,</span>
+<span>         pages <span class="op">=</span> <span class="st">"45-67"</span>,</span>
+<span>         doi <span class="op">=</span> <span class="st">"10.1234/example.doi"</span><span class="op">)</span></span></code></pre>
+<p>And when the package is built, you can use the
+<code><a href="https://rdrr.io/r/utils/citation.html" class="external-link">citation()</a></code> function in base <em>R</em> to view the citation
+for the project.</p>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
