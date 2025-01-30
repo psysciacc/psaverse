@@ -1,8 +1,10 @@
 #' Create Metadata for each folder
 #'
-#' Input: a folder in inst.
-#' Output: a README with info about the files in the folder, and templates for
-#' the author to insert description.
+#' Takes a folder from inst (that is, O1_Ethics, O2_Power, etc.), and outputs
+#' a README file with the filenames of every file/subfolder from the given
+#' folder, also indicating whether they are files or subfolders. A space for
+#' modifying a description for every file is also created.
+#' about the files in
 #'
 #' @param folder name of the folder to be documented. If not "ethics", "power",
 #' ..., "other", must supply full path of the folder.
@@ -14,6 +16,12 @@
 #'
 #' @return NULL
 #' @export
+#'
+#' @examples
+#' \dontrun{
+#'   psa_create_metadata(ethics, overwrite = TRUE)
+#' }
+#'
 psa_create_metadata <- function(folder, overwrite = FALSE) {
 
   # Support for inst folder names
@@ -32,7 +40,6 @@ psa_create_metadata <- function(folder, overwrite = FALSE) {
     {folder_path <- folder}
   )
 
-  # Just need file name of every file and a check on whether it is a dir
   if (!dir.exists(folder_path)) {
     stop(usethis::ui_oops(paste0("Pathname ", folder_path, " is not a valid folder.")))
   }

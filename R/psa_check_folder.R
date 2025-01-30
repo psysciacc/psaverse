@@ -4,13 +4,19 @@
 #' standard structure, either one project folder (i.e., 01_Ethics, 02_Power,
 #' etc.) at a time, or everything at once.
 #'
-#' @param folder name of the folder to check (or "all") to check all folders.
+#' @param folder name of the folder to check, or "all" to check all folders.
 #'
 #' @import usethis
 #' @keywords check folder
 #'
 #' @return NULL
 #' @export
+#'
+#' @examples
+#' \dontrun{
+#' psa_check_folder("ethics")
+#' psa_check_folder("all")
+#' }
 psa_check_folder <- function(folder = "all"){
 
   proj_location <- usethis::proj_path()

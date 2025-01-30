@@ -14,9 +14,17 @@ psa_create_metadata(folder, overwrite = FALSE)
 previously created metadata file}
 }
 \description{
-Input: a folder in inst.
-Output: a README with info about the files in the folder, and templates for
-the author to insert description.
+Takes a folder from inst (that is, O1_Ethics, O2_Power, etc.), and outputs
+a README file with the filenames of every file/subfolder from the given
+folder, also indicating whether they are files or subfolders. A space for
+modifying a description for every file is also created.
+about the files in
+}
+\examples{
+\dontrun{
+  psa_create_metadata(ethics, overwrite = TRUE)
+}
+
 }
 \keyword{create}
 \keyword{folder}

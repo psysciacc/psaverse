@@ -1,17 +1,19 @@
 #' Create PSA Citation for Project
 #'
-#' Allows the user to create the citation for the github and/or
+#' Allows the user to create the citation for the GitHub and/or
 #' overall project for users to cite the data and files.
 #'
 #' @param bibtype	a character string with a BibTeX entry type.
 #' See Entry Types for details.
 #' @param title the title of the manuscript and/or title someone
-#' should use to cite this resource.
+#' should use to cite this resource. The default argument is "desc",
+#' in which case the title will be pulled from the DESCRIPTION file.
 #' @param author an author entry to include the author for citation.
 #' Please see the build project and/or update description for
-#' how to format author entries.
+#' how to format author entries. The default argument is "desc",
+#' in which case the author(s) will be pulled from the DESCRIPTION file.
 #' @param journal The journal or other location to cite for the
-#' project.
+#' project. If bibtype is "Article", this argument is mandatory.
 #' @param year The year of the citation for the project.
 #' @param url The url to include for the citation of the project.
 #' @param ... Other information that can be passed to bibentry to
@@ -22,6 +24,19 @@
 #'
 #' @return NULL
 #' @export
+#'
+#' @examples
+#' \dontrun{
+#' psa_citation(
+#'   bibtype = "Article",
+#'   title = "My Package",
+#'   author = "desc",
+#'   journal = "My journal",
+#'   year = 2000,
+#'   url = "myurl.com"
+#' )
+#' }
+#'
 
 psa_citation <- function(
     bibtype = "Article",

@@ -7,12 +7,18 @@
 psa_check_folder(folder = "all")
 }
 \arguments{
-\item{folder}{name of the folder to check (or "all") to check all folders.}
+\item{folder}{name of the folder to check, or "all" to check all folders.}
 }
 \description{
 Checks the current project's folder structure according to the PSAVerse
 standard structure, either one project folder (i.e., 01_Ethics, 02_Power,
 etc.) at a time, or everything at once.
+}
+\examples{
+\dontrun{
+psa_check_folder("ethics")
+psa_check_folder("all")
+}
 }
 \keyword{check}
 \keyword{folder}

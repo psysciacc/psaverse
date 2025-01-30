@@ -19,14 +19,16 @@ psa_citation(
 See Entry Types for details.}
 
 \item{title}{the title of the manuscript and/or title someone
-should use to cite this resource.}
+should use to cite this resource. The default argument is "desc",
+in which case the title will be pulled from the DESCRIPTION file.}
 
 \item{author}{an author entry to include the author for citation.
 Please see the build project and/or update description for
-how to format author entries.}
+how to format author entries. The default argument is "desc",
+in which case the author(s) will be pulled from the DESCRIPTION file.}
 
 \item{journal}{The journal or other location to cite for the
-project.}
+project. If bibtype is "Article", this argument is mandatory.}
 
 \item{year}{The year of the citation for the project.}
 
@@ -36,8 +38,21 @@ project.}
 add more details for the citation of the project.}
 }
 \description{
-Allows the user to create the citation for the github and/or
+Allows the user to create the citation for the GitHub and/or
 overall project for users to cite the data and files.
+}
+\examples{
+\dontrun{
+psa_citation(
+  bibtype = "Article",
+  title = "My Package",
+  author = "desc",
+  journal = "My journal",
+  year = 2000,
+  url = "myurl.com"
+)
+}
+
 }
 \keyword{citation}
 \keyword{create}
