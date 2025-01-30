@@ -2,7 +2,8 @@
 #'
 #' @description
 #' Allows you to view the metadata for a folder for
-#' a PSA project.
+#' a PSA project. Returns a dataframe of the entered
+#' metadata from the readme file.
 #'
 #'
 #' @param folder what folder you want to view metadata for.

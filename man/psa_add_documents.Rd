@@ -20,18 +20,26 @@ psa_add_documents(
 \item "procedure": creates the "04_Procedure" folder.
 \item "data": creates the "05_Data" folder.
 \item "analysis": creates the "06_Analysis" folder.
-\item "communication": creates the "07_Communication folder.
-Any other parameter option will be added into the 08_Other folder.
+\item "communication": creates the "07_Communication
+folder. Any other parameter option will be added
+into the 08_Other folder.
 }}
 
-\item{path}{path of the requested file/directory. Must be a valid path within the current device.}
+\item{path}{path of the requested file/directory.
+Must be a valid path within the current device.}
 
-\item{should_replace}{whether the requested file must overwrite an already existing one within the project.}
+\item{should_replace}{whether the requested file
+must overwrite an already existing one within the
+project.}
 
-\item{recursive}{whether directories should be copied recursively.}
+\item{recursive}{whether directories should be
+copied recursively.}
 }
 \description{
-This function copies the requested file/directory to the specified folder within the project folder structure. If the requested folder does not already exist, it is created automatically.
+This function copies the requested file/directory
+to the specified folder within the project folder
+structure. If the requested folder does not already
+exist, it is created automatically.
 }
 \examples{
 \dontrun{

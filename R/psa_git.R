@@ -8,7 +8,7 @@
 #' github.
 #'
 #' @param organisation should be "psysciacc" - please
-#' note you should confirm you have the priveleges
+#' note you should confirm you have the privileges
 #' to push to the organization first
 #' @param private a TRUE/FALSE variable with the
 #' default to start as private until you are ready

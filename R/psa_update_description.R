@@ -1,9 +1,12 @@
 #' Create/Update PSA Project Description
 #'
 #' @param package_title new title for the package
-#' @param description short description of package functionality
-#' @param version version number of package (by default 0.0.0.9000)
-#' @param license license type of package. Directly available options:
+#' @param description short description of package
+#' functionality
+#' @param version version number of package
+#' (by default 0.0.0.9000)
+#' @param license license type of package.
+#' Directly available options:
 #' - MIT License: "MIT"
 #' - Apache License 2.0: "Apache"
 #' - GNU General Public License: "GPLv2" or "GPLv3"
@@ -13,7 +16,8 @@
 #' - Creative Commons Attribution 4.0 International: "CC-BY"
 #' - Proprietary license: "Proprietary"
 #'
-#' Refer to the documentation on package licenses in the usethis package website for available licenses.
+#' Refer to the documentation on package licenses
+#' in the usethis package website for available licenses.
 #'
 #' @import usethis
 #' @keywords create update description

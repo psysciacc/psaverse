@@ -7,11 +7,12 @@
 psa_dependencies(scan_folder = "inst", add_package = NULL)
 }
 \arguments{
-\item{scan_folder}{which folder should be examined for .R or .Rmd
-files to find package libraries}
+\item{scan_folder}{which folder should be examined
+for .R or .Rmd files to find package libraries}
 
-\item{add_package}{Add a single or set of packages to the project,
-use c("package", "package") to include several at once.}
+\item{add_package}{Add a single or set of packages
+to the project, use c("package", "package") to
+include several at once.}
 }
 \description{
 This function will look at all .R or .Rmd files for

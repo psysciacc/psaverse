@@ -14,11 +14,14 @@ psa_update_description(
 \arguments{
 \item{package_title}{new title for the package}
 
-\item{description}{short description of package functionality}
+\item{description}{short description of package
+functionality}
 
-\item{version}{version number of package (by default 0.0.0.9000)}
+\item{version}{version number of package
+(by default 0.0.0.9000)}
 
-\item{license}{license type of package. Directly available options:
+\item{license}{license type of package.
+Directly available options:
 \itemize{
 \item MIT License: "MIT"
 \item Apache License 2.0: "Apache"
@@ -30,7 +33,8 @@ psa_update_description(
 \item Proprietary license: "Proprietary"
 }
 
-Refer to the documentation on package licenses in the usethis package website for available licenses.}
+Refer to the documentation on package licenses
+in the usethis package website for available licenses.}
 }
 \description{
 Create/Update PSA Project Description

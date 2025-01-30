@@ -1,10 +1,12 @@
 #' Check PSA Project Folder Structure
 #'
-#' Checks the current project's folder structure according to the PSAVerse
-#' standard structure, either one project folder (i.e., 01_Ethics, 02_Power,
+#' Checks the current project's folder structure
+#' according to the PSAVerse standard structure,
+#' either one project folder (i.e., 01_Ethics, 02_Power,
 #' etc.) at a time, or everything at once.
 #'
-#' @param folder name of the folder to check, or "all" to check all folders.
+#' @param folder name of the folder to check, or
+#' "all" to check all folders.
 #'
 #' @import usethis
 #' @keywords check folder

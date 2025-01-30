@@ -7,18 +7,20 @@
 psa_create_metadata(folder, overwrite = FALSE)
 }
 \arguments{
-\item{folder}{name of the folder to be documented. If not "ethics", "power",
-..., "other", must supply full path of the folder.}
+\item{folder}{name of the folder to be documented.
+If not "ethics", "power", ..., "other", must supply
+full path of the folder.}
 
-\item{overwrite}{TRUE/FALSE variable for if you want to overwrite a
-previously created metadata file}
+\item{overwrite}{TRUE/FALSE variable for if you
+want to overwrite a previously created metadata file.}
 }
 \description{
-Takes a folder from inst (that is, O1_Ethics, O2_Power, etc.), and outputs
-a README file with the filenames of every file/subfolder from the given
-folder, also indicating whether they are files or subfolders. A space for
-modifying a description for every file is also created.
-about the files in
+Takes a folder from inst (that is, O1_Ethics,
+O2_Power, etc.), and outputs a README file with
+the filenames of every file/subfolder from the given
+folder, also indicating whether they are files or
+subfolders. A space for modifying a description
+for every file is also created.
 }
 \examples{
 \dontrun{

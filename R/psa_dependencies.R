@@ -7,10 +7,11 @@
 #' use the `add_package` option, the `scan_folder` will
 #' be ignored.
 #'
-#' @param scan_folder which folder should be examined for .R or .Rmd
-#'  files to find package libraries
-#' @param add_package Add a single or set of packages to the project,
-#' use c("package", "package") to include several at once.
+#' @param scan_folder which folder should be examined
+#' for .R or .Rmd files to find package libraries
+#' @param add_package Add a single or set of packages
+#' to the project, use c("package", "package") to
+#' include several at once.
 #'
 #' @import usethis
 #' @keywords dependencies
