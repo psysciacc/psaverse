@@ -14,6 +14,21 @@ knitr::opts_chunk$set(
 )
 ```
 
+## Recommended Workflow
+
+The functions in this package are meant to be used roughly in this order when setting up a new PSA project:
+
+1. `psa_create_project()` - create the project folder and open it as an R project.
+2. `psa_update_description()` and `psa_add_author()` - fill in the package description and authors.
+3. `psa_create_folder()` - build the standard PSA folder structure.
+4. `psa_add_documents()` - move your files into the correct folders.
+5. `psa_dependencies()` - scan your scripts and add package dependencies.
+6. `psa_create_metadata()` - generate a README with a file list for each folder, then manually fill in descriptions.
+7. `psa_check_folder()` - verify each folder meets the minimum requirements; fix and repeat until satisfied.
+8. `psa_view_folder()` - view the metadata you entered as a dataframe.
+9. `psa_git()` - connect the project to the PsySciAcc GitHub organization.
+10. `psa_citation()` - add a citation for the project.
+
 ## Install the Package
 
 Use `devtools` or `remotes` to install the package: 
@@ -190,14 +205,28 @@ The user of your package will then be able to view the folder contents in a data
 psa_view_folder(folder = "ethics")
 ```
 
+This reads the file information table out of that folder's `README.md` and returns it as a dataframe, so you can review or further process the metadata you filled in:
+
+```
+                              name isdir            descriptions
+1                  Roles_Data.csv FALSE INSERT FILE DESCRIPTION
+2 supplementary data and codes.zip FALSE INSERT FILE DESCRIPTION
+```
+
 ## Add this Package to PSA GitHub
 
 First, you should confirm you have the ability to push to the PsySciAcc github organization at https://github.com/psysciacc. Please ask to be added to the team. 
 
-Second, you can use the `psa_git()` function to initialize your new project as a github repository associated with the PsySciAcc organization. You can then use your favorite way to github to push and pull to update the package. The default is to create a private repository until you are ready to release the project. 
+Second, you can use the `psa_git()` function to initialize your new project as a github repository associated with the PsySciAcc organization. You can then use your favorite way to github to push and pull to update the package.
+
+  - `organisation`: defaults to `"psysciacc"`, the PsySciAcc GitHub organization. You should not normally need to change this, but it can be set to another organization or your personal account if needed.
+  - `private`: defaults to `TRUE`, so the repository is created as private until you are ready to release the project. Set to `FALSE` to create it as public right away.
 
 ```{r git, eval = F}
 psa_git()
+
+# to create a public repository instead
+psa_git(private = FALSE)
 ```
 
 If you see this message:
@@ -237,7 +266,61 @@ You will then get feedback about how your project should be organized:
 ✔ Checking finished.
 ```
 
-You can fix these issues and rerun the function until no messages remain. 
+You can fix these issues and rerun the function until no messages remain.
+
+### What Each Folder Requires
+
+Each folder has its own set of requirements that `psa_check_folder()` verifies. Folder and file names are case-sensitive and must match exactly.
+
+**01_Ethics**
+
+  - `README.md`
+  - `lab_ethics_summary.csv`
+  - A file or folder with "Collaboration" in the name (Collaboration Agreement)
+  - Four required subfolders: `PI_IRB`, `Local_IRB`, `No_Ethics`, `Rely_PI`
+  - `PI_IRB` must contain a file matching `V#_IRB_Submission` or `V#_IRB_Approval`
+  - `Local_IRB`, `No_Ethics`, and `Rely_PI` must each contain a file matching `NUMBER_Name`
+
+**02_Power**
+
+  - `README.md`
+  - A power analysis file matching `*power*analysis.R` or `*power*analysis.Rmd`
+
+**03_Materials**
+
+  - `README.md`
+  - At least one of the format folders: `Text`, `Audio`, or `Video`
+  - A `Translation` folder
+  - No subfolders other than `Text`, `Audio`, `Video`, or `Translation` are allowed
+  - All existing format folders and `Translation` must contain at least one file (not be empty)
+
+**04_Procedure**
+
+  - `README.md`
+  - `English` and `Translation` folders, both non-empty
+  - `lab_notebook.csv`
+
+**05_Data**
+
+  - `README.md`
+  - `Raw_Data`, `Processed_Data`, and `Scripts` folders, all non-empty
+
+**06_Analysis**
+
+  - `README.md`
+  - `Outputs`, `Images`, and `Includes` folders, all non-empty
+  - Suggested (not required): a `Supplemental` folder
+
+**07_Communication**
+
+  - `README.md`
+  - `Pre-Registration` and `Manuscript` folders, both non-empty
+  - The `Manuscript` folder must contain a file with "tenzing" in the name
+  - Suggested (not required): a `Presentations` folder
+
+**08_Other**
+
+  - Only checked for existence; no specific files or subfolders are required.
 
 ## Citation
 

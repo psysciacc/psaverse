@@ -24,3 +24,12 @@ You can install the development version of psaverse from
 # install.packages("devtools")
 devtools::install_github("psysciacc/psaverse")
 ```
+
+ethcis - irb,
+power - power, r scirpts/markdown files, smaple sieze, estimates
+material - translations (survey doc, items) (lot of them are xl, csv)
+procedure - entire survey qualtric file, word doc, scripts java
+data - csvs (chk if they r large >100MB per file)
+analysis - r scripts/markdown
+comm - presentations, markdown, with a conf name
+other - other
