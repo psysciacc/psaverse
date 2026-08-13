@@ -27,8 +27,8 @@ test_that("example", {
   )
 
   desc <- proj_desc()
-  expect_equal(as.character(desc$get_authors()[[1]]), "Ada Lovelace <lovelace@example.com> [aut, cre] (ADA-ORCID-ID)")
-  expect_equal(as.character(desc$get_authors()[[2]]), "Charles Babbage <babbage@example.com> [aut, cre] (CHARLES-ORCID-ID)")
+  expect_equal(as.character(desc$get_authors()[[1]]), "Ada Lovelace <lovelace@example.com> [aut, cre] (ORCID: ADA-ORCID-ID)")
+  expect_equal(as.character(desc$get_authors()[[2]]), "Charles Babbage <babbage@example.com> [aut, cre] (ORCID: CHARLES-ORCID-ID)")
 
   # clean up
   unlink(default_dir, recursive = TRUE)
