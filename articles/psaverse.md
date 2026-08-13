@@ -1,0 +1,431 @@
+# psaverse
+
+## Recommended Workflow
+
+The functions in this package are meant to be used roughly in this order
+when setting up a new PSA project:
+
+1.  [`psa_create_project()`](http://psysciacc.org/psaverse/reference/psa_create_project.md) -
+    create the project folder and open it as an R project.
+2.  [`psa_update_description()`](http://psysciacc.org/psaverse/reference/psa_update_description.md)
+    and
+    [`psa_add_author()`](http://psysciacc.org/psaverse/reference/psa_add_author.md) -
+    fill in the package description and authors.
+3.  [`psa_create_folder()`](http://psysciacc.org/psaverse/reference/psa_create_folder.md) -
+    build the standard PSA folder structure.
+4.  [`psa_add_documents()`](http://psysciacc.org/psaverse/reference/psa_add_documents.md) -
+    move your files into the correct folders.
+5.  [`psa_dependencies()`](http://psysciacc.org/psaverse/reference/psa_dependencies.md) -
+    scan your scripts and add package dependencies.
+6.  [`psa_create_metadata()`](http://psysciacc.org/psaverse/reference/psa_create_metadata.md) -
+    generate a README with a file list for each folder, then manually
+    fill in descriptions.
+7.  [`psa_check_folder()`](http://psysciacc.org/psaverse/reference/psa_check_folder.md) -
+    verify each folder meets the minimum requirements; fix and repeat
+    until satisfied.
+8.  [`psa_view_folder()`](http://psysciacc.org/psaverse/reference/psa_view_folder.md) -
+    view the metadata you entered as a dataframe.
+9.  [`psa_git()`](http://psysciacc.org/psaverse/reference/psa_git.md) -
+    connect the project to the PsySciAcc GitHub organization.
+10. [`psa_citation()`](http://psysciacc.org/psaverse/reference/psa_citation.md) -
+    add a citation for the project.
+
+## Install the Package
+
+Use `devtools` or `remotes` to install the package:
+
+``` r
+
+library(devtools)
+install_github("psysciacc/psaverse")
+```
+
+## Load the Library
+
+``` r
+
+library(psaverse)
+```
+
+## Setting up a PSA Project Package
+
+First, you would need to run the
+[`psa_create_project()`](http://psysciacc.org/psaverse/reference/psa_create_project.md)
+function including the path you want to start the folder on your
+computer and the name of the project. After you run this function, the
+new package *R* project will open automatically for you (unless you
+change open to `FALSE`). Use that *R* project to complete the rest of
+the steps below to ensure files/folders go into the correct directories.
+
+``` r
+
+psa_create_project(
+  path = "~/Github", # path you want this on your computer
+  psa_name = "PSA007-spaml", # name of the project 
+  open = TRUE
+)
+```
+
+## Create/Update Descriptions
+
+You can update the description of the package using the
+[`psa_update_description()`](http://psysciacc.org/psaverse/reference/psa_update_description.md)
+function. Here are the license options:
+
+- MIT License: “MIT”
+- Apache License 2.0: “Apache”
+- GNU General Public License: “GPLv2” or “GPLv3”
+- GNU Affero General Public License, version 3: “AGPLv3”
+- GNU Lesser General Public License: “LGPLv2.1” or “LGPLv3”
+- Creative Commons CC0 Public Domain Dedication: “CC0”
+- Creative Commons Attribution 4.0 International: “CC-BY”
+- Proprietary license: “Proprietary”
+
+Note: say yes when it asks if you want to overwrite the license!
+
+``` r
+
+library(psaverse) # since you are in a new project
+psa_update_description(
+  package_title = "SPAML IS GREAT",
+  description = "Here's a serious description of the project.",
+  version = "0.0.1",
+  license = "GPLv3"
+)
+```
+
+You can add authors to the package for other project monitors or the
+lead author of the paper.
+
+Each author can have one or more roles, indicated by a character string.
+Common roles include:
+
+- “cre”: The “creator” or maintainer of the package. This is required
+  and only one person can be designated with this role.
+- “aut”: Authors who contributed to the package (other than the
+  maintainer).
+- “cph”: Contributors who hold copyright on the package.
+- “ctb”: Contributors who helped but are not full authors (e.g.,
+  provided bug fixes, advice, or minor contributions).
+- “rev”: Reviewers.
+- “trl”: Translator(s).
+
+``` r
+
+psa_add_author(
+  given = "Lucy",
+  family = "van Pelt",
+  role = c("aut", "cre"),
+  email = "lucy@example.com",
+  ORCID_number = "LUCY-ORCID-ID")
+```
+
+If you check the description file, you will now see that it has the new
+author and description:
+
+    Package: PSA007-spaml
+    Title: SPAML IS GREAT
+    Version: 0.0.1
+    Authors@R: 
+        person("Lucy", "van Pelt", , "lucy@example.com", role = c("aut", "cre"),
+               comment = c(ORCID = "LUCY-ORCID-ID"))
+    Description: Here's a serious description of the project.
+    License: GPL (>= 3)
+    Encoding: UTF-8
+    Roxygen: list(markdown = TRUE)
+    RoxygenNote: 7.3.2
+
+If you want to add more, you can use this function, but if you want to
+delete people, you will need to manually edit the description file. It’s
+a text file that can be opened with RStudio or a text editor.
+
+## Create Folder Structure
+
+`psa_create_folder("all")` will create the entire folder structure for
+the package, while you can also add one at a time.
+
+Other options:
+
+- “ethics”: creates the “01_Ethics” folder.
+- “power”: creates the “02_Power” folder.
+- “materials”: creates the “03_Materials” folder.
+- “procedure”: creates the “04_Procedure” folder.
+- “data”: creates the “05_Data” folder.
+- “analysis”: creates the “06_Analysis” folder.
+- “communication”: creates the “07_Communication folder.
+- “all”: creates all eight main folders.
+- Any other parameter option will be added into the 08_Other folder.
+
+``` r
+
+# will create all folders 
+psa_create_folder("all")
+
+# this will put a new folder in the other folder
+psa_create_folder("cheese")
+```
+
+## Add Documents
+
+You can then manually move the files you need into the folder structure
+or use the
+[`psa_add_documents()`](http://psysciacc.org/psaverse/reference/psa_add_documents.md)
+function to add individual files or entire folders.
+
+``` r
+
+psa_add_documents(
+  folder = "ethics", # where should it go
+  path = "~/Downloads", # to a single file or directory
+  should_replace = FALSE, # overwrite existing files?
+  recursive = FALSE # move all subfolders as well 
+)
+```
+
+This function will print out a list of files moved for you, and you can
+see that it copied the files over into your folder.
+
+## Add R Package Dependencies
+
+After you add your R scripts in `.R` or `.Rmd` format, you can use a
+convenience function to add all libraries that can be found in those
+scripts. The default is to examine all files in the `inst` folder and
+add those packages.
+
+``` r
+
+psa_dependencies(
+    scan_folder = "inst",
+    add_package = NULL 
+    )
+```
+
+## Create Metadata for Each Folder
+
+We want to make sure people can use these files. Use the
+[`psa_create_metadata()`](http://psysciacc.org/psaverse/reference/psa_create_metadata.md)
+function to create a metadata csv file. You will then need to manually
+edit that file. Folder options are the same as above.
+
+``` r
+
+psa_create_metadata("ethics", 
+                    overwrite = FALSE)
+```
+
+The function creates a `README.md` or adds to the bottom of your current
+readme. You will see output like this:
+
+    (FOLDER NAME) documentation
+
+
+    (SHORT DESCRIPTION)
+
+
+    File information:
+
+    |name                                          |isdir |descriptions            |
+    |:---------------------------------------------|:-----|:-----------------------|
+    |Roles_Data.csv                                |FALSE |INSERT FILE DESCRIPTION |
+    |supplementary data and codes.zip              |FALSE |INSERT FILE DESCRIPTION |
+
+You should fill information that is IN CAPS, such as the folder name,
+description of the folder, and the description of the files. Note that
+the structure of the file information folder is a markdown table, so do
+not delete the `|` or `---` to ensure that the table renders correctly.
+
+## View Folder Information
+
+The user of your package will then be able to view the folder contents
+in a dataframe using
+[`psa_view_folder()`](http://psysciacc.org/psaverse/reference/psa_view_folder.md):
+
+``` r
+
+psa_view_folder(folder = "ethics")
+```
+
+This reads the file information table out of that folder’s `README.md`
+and returns it as a dataframe, so you can review or further process the
+metadata you filled in:
+
+                                  name isdir            descriptions
+    1                  Roles_Data.csv FALSE INSERT FILE DESCRIPTION
+    2 supplementary data and codes.zip FALSE INSERT FILE DESCRIPTION
+
+## Add this Package to PSA GitHub
+
+First, you should confirm you have the ability to push to the PsySciAcc
+github organization at <https://github.com/psysciacc>. Please ask to be
+added to the team.
+
+Second, you can use the
+[`psa_git()`](http://psysciacc.org/psaverse/reference/psa_git.md)
+function to initialize your new project as a github repository
+associated with the PsySciAcc organization. You can then use your
+favorite way to github to push and pull to update the package.
+
+- `organisation`: defaults to `"psysciacc"`, the PsySciAcc GitHub
+  organization. You should not normally need to change this, but it can
+  be set to another organization or your personal account if needed.
+- `private`: defaults to `TRUE`, so the repository is created as private
+  until you are ready to release the project. Set to `FALSE` to create
+  it as public right away.
+
+``` r
+
+psa_git()
+
+# to create a public repository instead
+psa_git(private = FALSE)
+```
+
+If you see this message:
+
+    ℹ Defaulting to "https" Git protocol.
+    Error in `check_uses_git()`:
+    ✖ Cannot detect that project is already a
+      Git repository.
+    ℹ Do you need to run usethis::use_git()?
+
+Simply click on
+[`usethis::use_git`](https://usethis.r-lib.org/reference/use_git.html)
+to set up your folder as a GitHub repository. Then rerun
+[`psa_git()`](http://psysciacc.org/psaverse/reference/psa_git.md).
+
+## Check Package Folders
+
+This function will check that you meet the minimum requires for
+documentation and files for the PSA folder structure. You will receive
+information on what you are missing.
+
+Options: “ethics”, “power”, “materials”, “procedure”, “data”,
+“analysis”, “communication”, “all”.
+
+``` r
+
+psa_check_folder(folder = "ethics")
+```
+
+You will then get feedback about how your project should be organized:
+
+    ℹ Checking O1_Ethics folder...
+    • You need to include: 
+      - README.md
+      - lab_ethics_summary.csv
+      - Collaboration Agreement
+      - PI_IRB
+      - Local_IRB
+      - No_Ethics
+      - Rely_PI
+    ✔ Checking finished.
+
+You can fix these issues and rerun the function until no messages
+remain.
+
+### What Each Folder Requires
+
+Each folder has its own set of requirements that
+[`psa_check_folder()`](http://psysciacc.org/psaverse/reference/psa_check_folder.md)
+verifies. Folder and file names are case-sensitive and must match
+exactly.
+
+**01_Ethics**
+
+- `README.md`
+- `lab_ethics_summary.csv`
+- A file or folder with “Collaboration” in the name (Collaboration
+  Agreement)
+- Four required subfolders: `PI_IRB`, `Local_IRB`, `No_Ethics`,
+  `Rely_PI`
+- `PI_IRB` must contain a file matching `V#_IRB_Submission` or
+  `V#_IRB_Approval`
+- `Local_IRB`, `No_Ethics`, and `Rely_PI` must each contain a file
+  matching `NUMBER_Name`
+
+**02_Power**
+
+- `README.md`
+- A power analysis file matching `*power*analysis.R` or
+  `*power*analysis.Rmd`
+
+**03_Materials**
+
+- `README.md`
+- At least one of the format folders: `Text`, `Audio`, or `Video`
+- A `Translation` folder
+- No subfolders other than `Text`, `Audio`, `Video`, or `Translation`
+  are allowed
+- All existing format folders and `Translation` must contain at least
+  one file (not be empty)
+
+**04_Procedure**
+
+- `README.md`
+- `English` and `Translation` folders, both non-empty
+- `lab_notebook.csv`
+
+**05_Data**
+
+- `README.md`
+- `Raw_Data`, `Processed_Data`, and `Scripts` folders, all non-empty
+
+**06_Analysis**
+
+- `README.md`
+- `Outputs`, `Images`, and `Includes` folders, all non-empty
+- Suggested (not required): a `Supplemental` folder
+
+**07_Communication**
+
+- `README.md`
+- `Pre-Registration` and `Manuscript` folders, both non-empty
+- The `Manuscript` folder must contain a file with “tenzing” in the name
+- Suggested (not required): a `Presentations` folder
+
+**08_Other**
+
+- Only checked for existence; no specific files or subfolders are
+  required.
+
+## Citation
+
+If you want to add a citation for the project, which can be separate
+than the citation for the package, you can use
+[`psa_citation()`](http://psysciacc.org/psaverse/reference/psa_citation.md).
+You can add any features that are allowable in
+[`bibentry()`](https://rdrr.io/r/utils/bibentry.html).
+
+``` r
+
+psa_citation(
+  bibtype = "Article", # default
+    title = "SPAML Greatness Achieved!",
+    author = "Buchanan, E.M.",
+    journal = "The Magical Journal of Cognition",
+    year = 2025,
+    url = "https://osf.io",
+    volume = 12,
+    number = 3,
+    pages = "45-67",
+    doi = "10.1234/example.doi"
+)
+```
+
+This function creates a `CITATION` file, which will look like this:
+
+    bibentry(bibtype = "Article",
+             title = "SPAML Greatness Achieved!",
+             author = c(person(family = "Buchanan"),
+                        person(family = "E.M.")),
+             journal = "The Magical Journal of Cognition",
+             year = "2025",
+             url = "https://osf.io",
+             volume = "12",
+             number = "3",
+             pages = "45-67",
+             doi = "10.1234/example.doi")
+
+And when the package is built, you can use the
+[`citation()`](https://rdrr.io/r/utils/citation.html) function in base
+*R* to view the citation for the project.

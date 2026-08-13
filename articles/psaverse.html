@@ -6,15 +6,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>psaverse • psaverse</title>
-<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
-<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
-<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
+<!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="../favicon-96x96.png">
+<link rel="icon" type="”image/svg+xml”" href="../favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="icon" sizes="any" href="../favicon.ico">
+<link rel="manifest" href="../site.webmanifest">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="psaverse">
 </head>
@@ -63,6 +62,44 @@
 
     
     
+<div class="section level2">
+<h2 id="recommended-workflow">Recommended Workflow<a class="anchor" aria-label="anchor" href="#recommended-workflow"></a>
+</h2>
+<p>The functions in this package are meant to be used roughly in this
+order when setting up a new PSA project:</p>
+<ol style="list-style-type: decimal">
+<li>
+<code><a href="../reference/psa_create_project.html">psa_create_project()</a></code> - create the project folder and
+open it as an R project.</li>
+<li>
+<code><a href="../reference/psa_update_description.html">psa_update_description()</a></code> and
+<code><a href="../reference/psa_add_author.html">psa_add_author()</a></code> - fill in the package description and
+authors.</li>
+<li>
+<code><a href="../reference/psa_create_folder.html">psa_create_folder()</a></code> - build the standard PSA folder
+structure.</li>
+<li>
+<code><a href="../reference/psa_add_documents.html">psa_add_documents()</a></code> - move your files into the correct
+folders.</li>
+<li>
+<code><a href="../reference/psa_dependencies.html">psa_dependencies()</a></code> - scan your scripts and add package
+dependencies.</li>
+<li>
+<code><a href="../reference/psa_create_metadata.html">psa_create_metadata()</a></code> - generate a README with a file
+list for each folder, then manually fill in descriptions.</li>
+<li>
+<code><a href="../reference/psa_check_folder.html">psa_check_folder()</a></code> - verify each folder meets the
+minimum requirements; fix and repeat until satisfied.</li>
+<li>
+<code><a href="../reference/psa_view_folder.html">psa_view_folder()</a></code> - view the metadata you entered as a
+dataframe.</li>
+<li>
+<code><a href="../reference/psa_git.html">psa_git()</a></code> - connect the project to the PsySciAcc GitHub
+organization.</li>
+<li>
+<code><a href="../reference/psa_citation.html">psa_citation()</a></code> - add a citation for the project.</li>
+</ol>
+</div>
 <div class="section level2">
 <h2 id="install-the-package">Install the Package<a class="anchor" aria-label="anchor" href="#install-the-package"></a>
 </h2>
@@ -250,6 +287,12 @@ table renders correctly.</p>
 contents in a dataframe using <code><a href="../reference/psa_view_folder.html">psa_view_folder()</a></code>:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/psa_view_folder.html">psa_view_folder</a></span><span class="op">(</span>folder <span class="op">=</span> <span class="st">"ethics"</span><span class="op">)</span></span></code></pre></div>
+<p>This reads the file information table out of that folder’s
+<code>README.md</code> and returns it as a dataframe, so you can review
+or further process the metadata you filled in:</p>
+<pre><code>                              name isdir            descriptions
+1                  Roles_Data.csv FALSE INSERT FILE DESCRIPTION
+2 supplementary data and codes.zip FALSE INSERT FILE DESCRIPTION</code></pre>
 </div>
 <div class="section level2">
 <h2 id="add-this-package-to-psa-github">Add this Package to PSA GitHub<a class="anchor" aria-label="anchor" href="#add-this-package-to-psa-github"></a>
@@ -260,10 +303,24 @@ the team.</p>
 <p>Second, you can use the <code><a href="../reference/psa_git.html">psa_git()</a></code> function to initialize
 your new project as a github repository associated with the PsySciAcc
 organization. You can then use your favorite way to github to push and
-pull to update the package. The default is to create a private
-repository until you are ready to release the project.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/psa_git.html">psa_git</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+pull to update the package.</p>
+<ul>
+<li>
+<code>organisation</code>: defaults to <code>"psysciacc"</code>, the
+PsySciAcc GitHub organization. You should not normally need to change
+this, but it can be set to another organization or your personal account
+if needed.</li>
+<li>
+<code>private</code>: defaults to <code>TRUE</code>, so the
+repository is created as private until you are ready to release the
+project. Set to <code>FALSE</code> to create it as public right
+away.</li>
+</ul>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/psa_git.html">psa_git</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># to create a public repository instead</span></span>
+<span><span class="fu"><a href="../reference/psa_git.html">psa_git</a></span><span class="op">(</span>private <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <p>If you see this message:</p>
 <pre><code>ℹ Defaulting to "https" Git protocol.
 Error in `check_uses_git()`:
@@ -281,7 +338,7 @@ documentation and files for the PSA folder structure. You will receive
 information on what you are missing.</p>
 <p>Options: “ethics”, “power”, “materials”, “procedure”, “data”,
 “analysis”, “communication”, “all”.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/psa_check_folder.html">psa_check_folder</a></span><span class="op">(</span>folder <span class="op">=</span> <span class="st">"ethics"</span><span class="op">)</span></span></code></pre></div>
 <p>You will then get feedback about how your project should be
 organized:</p>
@@ -297,6 +354,90 @@ organized:</p>
 ✔ Checking finished.</code></pre>
 <p>You can fix these issues and rerun the function until no messages
 remain.</p>
+<div class="section level3">
+<h3 id="what-each-folder-requires">What Each Folder Requires<a class="anchor" aria-label="anchor" href="#what-each-folder-requires"></a>
+</h3>
+<p>Each folder has its own set of requirements that
+<code><a href="../reference/psa_check_folder.html">psa_check_folder()</a></code> verifies. Folder and file names are
+case-sensitive and must match exactly.</p>
+<p><strong>01_Ethics</strong></p>
+<ul>
+<li><code>README.md</code></li>
+<li><code>lab_ethics_summary.csv</code></li>
+<li>A file or folder with “Collaboration” in the name (Collaboration
+Agreement)</li>
+<li>Four required subfolders: <code>PI_IRB</code>,
+<code>Local_IRB</code>, <code>No_Ethics</code>,
+<code>Rely_PI</code>
+</li>
+<li>
+<code>PI_IRB</code> must contain a file matching
+<code>V#_IRB_Submission</code> or <code>V#_IRB_Approval</code>
+</li>
+<li>
+<code>Local_IRB</code>, <code>No_Ethics</code>, and
+<code>Rely_PI</code> must each contain a file matching
+<code>NUMBER_Name</code>
+</li>
+</ul>
+<p><strong>02_Power</strong></p>
+<ul>
+<li><code>README.md</code></li>
+<li>A power analysis file matching <code>*power*analysis.R</code> or
+<code>*power*analysis.Rmd</code>
+</li>
+</ul>
+<p><strong>03_Materials</strong></p>
+<ul>
+<li><code>README.md</code></li>
+<li>At least one of the format folders: <code>Text</code>,
+<code>Audio</code>, or <code>Video</code>
+</li>
+<li>A <code>Translation</code> folder</li>
+<li>No subfolders other than <code>Text</code>, <code>Audio</code>,
+<code>Video</code>, or <code>Translation</code> are allowed</li>
+<li>All existing format folders and <code>Translation</code> must
+contain at least one file (not be empty)</li>
+</ul>
+<p><strong>04_Procedure</strong></p>
+<ul>
+<li><code>README.md</code></li>
+<li>
+<code>English</code> and <code>Translation</code> folders, both
+non-empty</li>
+<li><code>lab_notebook.csv</code></li>
+</ul>
+<p><strong>05_Data</strong></p>
+<ul>
+<li><code>README.md</code></li>
+<li>
+<code>Raw_Data</code>, <code>Processed_Data</code>, and
+<code>Scripts</code> folders, all non-empty</li>
+</ul>
+<p><strong>06_Analysis</strong></p>
+<ul>
+<li><code>README.md</code></li>
+<li>
+<code>Outputs</code>, <code>Images</code>, and <code>Includes</code>
+folders, all non-empty</li>
+<li>Suggested (not required): a <code>Supplemental</code> folder</li>
+</ul>
+<p><strong>07_Communication</strong></p>
+<ul>
+<li><code>README.md</code></li>
+<li>
+<code>Pre-Registration</code> and <code>Manuscript</code> folders,
+both non-empty</li>
+<li>The <code>Manuscript</code> folder must contain a file with
+“tenzing” in the name</li>
+<li>Suggested (not required): a <code>Presentations</code> folder</li>
+</ul>
+<p><strong>08_Other</strong></p>
+<ul>
+<li>Only checked for existence; no specific files or subfolders are
+required.</li>
+</ul>
+</div>
 </div>
 <div class="section level2">
 <h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
@@ -305,7 +446,7 @@ remain.</p>
 than the citation for the package, you can use
 <code><a href="../reference/psa_citation.html">psa_citation()</a></code>. You can add any features that are allowable
 in <code><a href="https://rdrr.io/r/utils/bibentry.html" class="external-link">bibentry()</a></code>.</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/psa_citation.html">psa_citation</a></span><span class="op">(</span></span>
 <span>  bibtype <span class="op">=</span> <span class="st">"Article"</span>, <span class="co"># default</span></span>
 <span>    title <span class="op">=</span> <span class="st">"SPAML Greatness Achieved!"</span>,</span>
@@ -346,7 +487,7 @@ for the project.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer>

@@ -1,9 +1,9 @@
-pandoc: 3.1.11
-pkgdown: 2.1.1
+pandoc: 3.8.3
+pkgdown: 2.2.1
 pkgdown_sha: ~
 articles:
   psaverse: psaverse.html
-last_built: 2025-01-30T19:37Z
+last_built: 2026-08-13T20:09Z
 urls:
   reference: http://psysciacc.org/psaverse/reference
   article: http://psysciacc.org/psaverse/articles
